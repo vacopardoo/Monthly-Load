@@ -1,0 +1,1196 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/5/2019 1:58:21 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MIA-LT100937"
+  DTS:CreatorName="DVA\vacoPardoo"
+  DTS:DTSID="{93C624E6-6FF5-445B-AEED-1649B2DA1651}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{47F0BE6B-4A70-4427-96D2-96ED2C8EAA0D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[vac20dbsmpo801.database.usgovcloudapi.net.bis-warehouse-dev.biobisadmin]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{7A35AA4F-8F18-43D5-9D63-64E4E6C3648A}"
+      DTS:ObjectName="vac20dbsmpo801.database.usgovcloudapi.net.bis-warehouse-dev.biobisadmin">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=vac20dbsmpo801.database.usgovcloudapi.net;User ID=biobisadmin;Initial Catalog=bis-warehouse-dev;Persist Security Info=True;Connect Timeout=0;Application Name=SSIS-Package1-{7A35AA4F-8F18-43D5-9D63-64E4E6C3648A}vac20dbsmpo801.database.usgovcloudapi.net.bis-warehouse-dev.biobisadmin;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACJE5bk+9oEGnoPTuH2tbnAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAOYWQeQhBT5iwGXxXB5OBqAAAAAASAAACgAAAAEAAAABHLWLevb/uTthmfz7u6ZswgAAAARBnzXvIJIed6u4bHU75unRfnXo6M210F6x3p/jGH4K0UAAAAiIdq1yC3cAZHg8PR1ZHf9+MTQZs</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[VHACDWDWHSQL52.VHA.MED.VA.GOV]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{B2AD6922-69FD-44E7-973A-200EFA465CB5}"
+      DTS:ObjectName="VHACDWDWHSQL52.VHA.MED.VA.GOV">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=VHACDWDWHSQL52.VHA.MED.VA.GOV;Integrated Security=True;Connect Timeout=0;Application Name=SSIS-Package1-{B2AD6922-69FD-44E7-973A-200EFA465CB5}VHACDWDWHSQL52.VHA.MED.VA.GOV;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[vhacdwdwhSQL52.vha.med.va.gov.BIO_BIS]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{26812046-8682-4EEF-8CA5-95C64E550E6D}"
+      DTS:ObjectName="vhacdwdwhSQL52.vha.med.va.gov.BIO_BIS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=vhacdwdwhSQL52.vha.med.va.gov;Initial Catalog=BIO_BIS;Integrated Security=True;Connect Timeout=0;Application Name=SSIS-Package1-{26812046-8682-4EEF-8CA5-95C64E550E6D}vhacdwdwhSQL52.vha.med.va.gov.BIO_BIS;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{58DD1C17-E423-4BC4-AB46-2D35F515990A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Read Null Bill Classification from Azure Daily Hist Table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT 
+	 AccountsReceivableSID
+	,billnumber
+	,sta3n
+FROM  
+	biobis.fact_ar_track_change_ALLhist
+		join biobis.biobisetllog 
+			on  CONVERT(DATE, billPreparedDateTime) BETWEEN monthbegindate AND monthenddate
+WHERE
+	bill_class_code IS NULL</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"biobis"."fact_ar_track_change_ALLhist"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[vac20dbsmpo801.database.usgovcloudapi.net.bis-warehouse-dev.biobisadmin]"
+                  connectionManagerRefId="Package.ConnectionManagers[vac20dbsmpo801.database.usgovcloudapi.net.bis-warehouse-dev.biobisadmin]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output].Columns[AccountsReceivableSID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output].ExternalColumns[AccountsReceivableSID]"
+                      lineageId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output].Columns[AccountsReceivableSID]"
+                      name="AccountsReceivableSID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output].Columns[billnumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output].ExternalColumns[billnumber]"
+                      length="50"
+                      lineageId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output].Columns[billnumber]"
+                      name="billnumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output].Columns[sta3n]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output].ExternalColumns[sta3n]"
+                      lineageId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output].Columns[sta3n]"
+                      name="sta3n"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output].ExternalColumns[AccountsReceivableSID]"
+                      dataType="i8"
+                      name="AccountsReceivableSID" />
+                    <externalMetadataColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output].ExternalColumns[billnumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="billnumber" />
+                    <externalMetadataColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output].ExternalColumns[sta3n]"
+                      dataType="i2"
+                      name="sta3n" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Error Output].Columns[AccountsReceivableSID]"
+                      dataType="i8"
+                      lineageId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Error Output].Columns[AccountsReceivableSID]"
+                      name="AccountsReceivableSID" />
+                    <outputColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Error Output].Columns[billnumber]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Error Output].Columns[billnumber]"
+                      name="billnumber" />
+                    <outputColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Error Output].Columns[sta3n]"
+                      dataType="i2"
+                      lineageId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Error Output].Columns[sta3n]"
+                      name="sta3n" />
+                    <outputColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Write Records to CDW Staging table stg_bill_class"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"Dflt"."stg_bill_class"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[vhacdwdwhSQL52.vha.med.va.gov.BIO_BIS]"
+                  connectionManagerRefId="Package.ConnectionManagers[vhacdwdwhSQL52.vha.med.va.gov.BIO_BIS]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Inputs[ADO NET Destination Input].Columns[AccountsReceivableSID]"
+                      cachedDataType="i8"
+                      cachedName="AccountsReceivableSID"
+                      externalMetadataColumnId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Inputs[ADO NET Destination Input].ExternalColumns[AccountsReceivableSID]"
+                      lineageId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output].Columns[AccountsReceivableSID]" />
+                    <inputColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Inputs[ADO NET Destination Input].Columns[billnumber]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="billnumber"
+                      externalMetadataColumnId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Inputs[ADO NET Destination Input].ExternalColumns[billnumber]"
+                      lineageId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output].Columns[billnumber]" />
+                    <inputColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Inputs[ADO NET Destination Input].Columns[sta3n]"
+                      cachedDataType="i2"
+                      cachedName="sta3n"
+                      externalMetadataColumnId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Inputs[ADO NET Destination Input].ExternalColumns[sta3n]"
+                      lineageId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output].Columns[sta3n]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Inputs[ADO NET Destination Input].ExternalColumns[AccountsReceivableSID]"
+                      dataType="i8"
+                      name="AccountsReceivableSID" />
+                    <externalMetadataColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Inputs[ADO NET Destination Input].ExternalColumns[billnumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="billnumber" />
+                    <externalMetadataColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Inputs[ADO NET Destination Input].ExternalColumns[sta3n]"
+                      dataType="i2"
+                      name="sta3n" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class.Paths[ADO NET Source Output]"
+              endId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{95BFCB38-325E-43B2-99CF-98663C1CE94A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Get Bills that have added a Bill Class"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+	s.AccountsReceivableSID,
+	s.billnumber,
+	s.sta3n,
+	m.billclassificationcode,
+	m.authorizationdatetime ,
+	m.statementtodatetime,
+	m.mrareceiveddatetime,
+	m.mrarequestdatetime,
+	b.bedsection, 
+	g.RateTypeName,
+	m.OffsetAmount
+FROM 
+	BIO_BIS.Dflt.stg_bill_class s
+	JOIN CDWWORK.IB.BILLCLAIM m
+		on S.billnumber = CONVERT(VARCHAR,m.sta3n) + '-' + M.billnumber
+	JOIN cdwwork.ib.BillClaimInsurance bc
+		on  m.billclaimsid = bc.billclaimsid
+	LEFT OUTER JOIN cdwwork.Dim.BedSection b
+		on bedsectionsid =  UB04billbedsectionsid
+	LEFT OUTER JOIN cdwwork.dim.ibratetype g
+		on m.ibratetypesid = g.ibratetypesid
+WHERE m.BillClassificationCode IS NOT NULL</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[vhacdwdwhSQL52.vha.med.va.gov.BIO_BIS]"
+                  connectionManagerRefId="Package.ConnectionManagers[vhacdwdwhSQL52.vha.med.va.gov.BIO_BIS]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[AccountsReceivableSID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[AccountsReceivableSID]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[AccountsReceivableSID]"
+                      name="AccountsReceivableSID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[billnumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[billnumber]"
+                      length="50"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[billnumber]"
+                      name="billnumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[sta3n]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[sta3n]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[sta3n]"
+                      name="sta3n"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[billclassificationcode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[billclassificationcode]"
+                      length="50"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[billclassificationcode]"
+                      name="billclassificationcode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[authorizationdatetime]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[authorizationdatetime]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[authorizationdatetime]"
+                      name="authorizationdatetime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[statementtodatetime]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[statementtodatetime]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[statementtodatetime]"
+                      name="statementtodatetime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[mrareceiveddatetime]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[mrareceiveddatetime]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[mrareceiveddatetime]"
+                      name="mrareceiveddatetime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[mrarequestdatetime]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[mrarequestdatetime]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[mrarequestdatetime]"
+                      name="mrarequestdatetime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[bedsection]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[bedsection]"
+                      length="100"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[bedsection]"
+                      name="bedsection"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[RateTypeName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[RateTypeName]"
+                      length="50"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[RateTypeName]"
+                      name="RateTypeName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[OffsetAmount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[OffsetAmount]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[OffsetAmount]"
+                      name="OffsetAmount"
+                      precision="19"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[AccountsReceivableSID]"
+                      dataType="i8"
+                      name="AccountsReceivableSID" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[billnumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="billnumber" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[sta3n]"
+                      dataType="i2"
+                      name="sta3n" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[billclassificationcode]"
+                      dataType="wstr"
+                      length="50"
+                      name="billclassificationcode" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[authorizationdatetime]"
+                      dataType="dbTimeStamp2"
+                      name="authorizationdatetime" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[statementtodatetime]"
+                      dataType="dbTimeStamp2"
+                      name="statementtodatetime" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[mrareceiveddatetime]"
+                      dataType="dbTimeStamp2"
+                      name="mrareceiveddatetime" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[mrarequestdatetime]"
+                      dataType="dbTimeStamp2"
+                      name="mrarequestdatetime" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[bedsection]"
+                      dataType="wstr"
+                      length="100"
+                      name="bedsection" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[RateTypeName]"
+                      dataType="wstr"
+                      length="50"
+                      name="RateTypeName" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].ExternalColumns[OffsetAmount]"
+                      dataType="numeric"
+                      name="OffsetAmount"
+                      precision="19"
+                      scale="4" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[AccountsReceivableSID]"
+                      dataType="i8"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[AccountsReceivableSID]"
+                      name="AccountsReceivableSID" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[billnumber]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[billnumber]"
+                      name="billnumber" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[sta3n]"
+                      dataType="i2"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[sta3n]"
+                      name="sta3n" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[billclassificationcode]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[billclassificationcode]"
+                      name="billclassificationcode" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[authorizationdatetime]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[authorizationdatetime]"
+                      name="authorizationdatetime" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[statementtodatetime]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[statementtodatetime]"
+                      name="statementtodatetime" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[mrareceiveddatetime]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[mrareceiveddatetime]"
+                      name="mrareceiveddatetime" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[mrarequestdatetime]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[mrarequestdatetime]"
+                      name="mrarequestdatetime" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[bedsection]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[bedsection]"
+                      name="bedsection" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[RateTypeName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[RateTypeName]"
+                      name="RateTypeName" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[OffsetAmount]"
+                      dataType="numeric"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[OffsetAmount]"
+                      name="OffsetAmount"
+                      precision="19"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"biobisstg"."STGBillClassUpdates"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[vac20dbsmpo801.database.usgovcloudapi.net.bis-warehouse-dev.biobisadmin]"
+                  connectionManagerRefId="Package.ConnectionManagers[vac20dbsmpo801.database.usgovcloudapi.net.bis-warehouse-dev.biobisadmin]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].Columns[AccountsReceivableSID]"
+                      cachedDataType="i8"
+                      cachedName="AccountsReceivableSID"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[AccountsReceivableSID]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[AccountsReceivableSID]" />
+                    <inputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].Columns[billnumber]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="billnumber"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[billnumber]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[billnumber]" />
+                    <inputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].Columns[sta3n]"
+                      cachedDataType="i2"
+                      cachedName="sta3n"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[sta3n]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[sta3n]" />
+                    <inputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].Columns[billclassificationcode]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="billclassificationcode"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[billclassificationcode]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[billclassificationcode]" />
+                    <inputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].Columns[authorizationdatetime]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="authorizationdatetime"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[authorizationdatetime]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[authorizationdatetime]" />
+                    <inputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].Columns[statementtodatetime]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="statementtodatetime"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[statementtodatetime]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[statementtodatetime]" />
+                    <inputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].Columns[mrareceiveddatetime]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="mrareceiveddatetime"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[mrareceiveddatetime]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[mrareceiveddatetime]" />
+                    <inputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].Columns[mrarequestdatetime]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="mrarequestdatetime"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[mrarequestdatetime]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[mrarequestdatetime]" />
+                    <inputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].Columns[bedsection]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="bedsection"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[bedsection]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[bedsection]" />
+                    <inputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].Columns[RateTypeName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="RateTypeName"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[RateTypeName]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[RateTypeName]" />
+                    <inputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].Columns[OffsetAmount]"
+                      cachedDataType="numeric"
+                      cachedName="OffsetAmount"
+                      cachedPrecision="19"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[OffsetAmount]"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output].Columns[OffsetAmount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[AccountsReceivableSID]"
+                      dataType="i8"
+                      name="AccountsReceivableSID" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[billnumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="billnumber" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[sta3n]"
+                      dataType="i2"
+                      name="sta3n" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[billclassificationcode]"
+                      dataType="wstr"
+                      length="50"
+                      name="billclassificationcode" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[authorizationdatetime]"
+                      dataType="dbTimeStamp"
+                      name="authorizationdatetime" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[statementtodatetime]"
+                      dataType="dbTimeStamp"
+                      name="statementtodatetime" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[mrareceiveddatetime]"
+                      dataType="dbTimeStamp"
+                      name="mrareceiveddatetime" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[mrarequestdatetime]"
+                      dataType="dbTimeStamp"
+                      name="mrarequestdatetime" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[bedsection]"
+                      dataType="wstr"
+                      length="200"
+                      name="bedsection" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[RateTypeName]"
+                      dataType="wstr"
+                      length="200"
+                      name="RateTypeName" />
+                    <externalMetadataColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input].ExternalColumns[OffsetAmount]"
+                      dataType="numeric"
+                      name="OffsetAmount"
+                      precision="15"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure.Paths[ADO NET Source Output]"
+              endId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Azure Staging Table STGBillClassUpdates"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{096c9924-916f-4764-bb2b-ee8fd4e74435}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Azure Staging Table STGBillClassUpdates"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7A35AA4F-8F18-43D5-9D63-64E4E6C3648A}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE biobisstg.StgBillClassUpdates;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate CDW Staging Table stg_bill_class"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D6F7DE35-5BE4-46D6-9D3D-07C8664FC66C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate CDW Staging Table stg_bill_class"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26812046-8682-4EEF-8CA5-95C64E550E6D}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE BIO_BIS.Dflt.stg_bill_class;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Bill Class and other Bill Columns that have changed"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{EA5F7BF2-0353-4928-9BEE-2FAD91B73F6C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Bill Class and other Bill Columns that have changed"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7A35AA4F-8F18-43D5-9D63-64E4E6C3648A}"
+          SQLTask:SqlStatementSource="MERGE biobis.fact_ar_track_change_ALLhist AS Target&#xA;USING&#xA;(&#x9;SELECT &#xA;&#x9;&#x9;AccountsReceivableSID&#xA;&#x9;&#x9;,billnumber&#xA;&#x9;&#x9;,sta3n&#xA;&#x9;&#x9;,billclassificationcode&#xA;&#x9;&#x9;,authorizationdatetime&#xA;&#x9;&#x9;,statementtodatetime&#xA;&#x9;&#x9;,mrareceiveddatetime&#xA;&#x9;&#x9;,mrarequestdatetime&#xA;&#x9;&#x9;,bedsection&#xA;&#x9;&#x9;,RateTypeName&#xA;&#x9;&#x9;,OffsetAmount&#xA;&#x9;FROM &#xA;&#x9;&#x9;biobisstg.STGBillClassUpdates&#xA;) Source&#xA;ON&#x9;(&#xA;&#x9;&#x9;target.AccountsReceivableSID = source.AccountsReceivableSID &#xA;&#x9;&#x9;AND target.billnumber = source.billnumber &#xA;&#x9;&#x9;AND source.sta3n = target.sta3n &#xA;&#x9;)&#xA;when matched AND target.bill_class_code is NULL then &#xA;update set&#x9;target.bill_class_code = source.billclassificationcode&#xA;&#x9;&#x9;&#x9;,target.authorization_date = source.authorizationdatetime&#xA;&#x9;&#x9;&#x9;,target.statement_to_date = source.statementtodatetime&#xA;&#x9;&#x9;&#x9;,target.mra_received_date = source.mrareceiveddatetime&#xA;&#x9;&#x9;&#x9;,target.mra_request_date= source.mrarequestdatetime&#xA;&#x9;&#x9;&#x9;,target.Rate_Type_Name = source.RateTypeName&#xA;&#x9;&#x9;&#x9;,target.OffsetAmount = source.OffsetAmount;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{8164E05F-93D7-44A3-A0B6-BCDB16123400}"
+      DTS:From="Package\Truncate CDW Staging Table stg_bill_class"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{F5EAC231-C153-4A4A-832F-9602B8EE7C9F}"
+      DTS:From="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Truncate Azure Staging Table STGBillClassUpdates" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{2B94194B-C3F3-4F1E-87CA-8A159991FF83}"
+      DTS:From="Package\Truncate Azure Staging Table STGBillClassUpdates"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{61D64A06-E546-49D1-BCCF-4DEDF45E681F}"
+      DTS:From="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Update Bill Class and other Bill Columns that have changed" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="435,42"
+          Id="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class"
+          TopLeft="107,105" />
+        <NodeLayout
+          Size="630,42"
+          Id="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure"
+          TopLeft="11,295" />
+        <NodeLayout
+          Size="334,42"
+          Id="Package\Truncate Azure Staging Table STGBillClassUpdates"
+          TopLeft="155,191" />
+        <NodeLayout
+          Size="291,42"
+          Id="Package\Truncate CDW Staging Table stg_bill_class"
+          TopLeft="183,11" />
+        <NodeLayout
+          Size="369,42"
+          Id="Package\Update Bill Class and other Bill Columns that have changed"
+          TopLeft="148,387" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="326.5,53">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="323.25,147">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="324,233">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62"
+              Start="0,0"
+              End="0,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="329.25,337">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class"
+          TopLeft="223,296" />
+        <NodeLayout
+          Size="350,42"
+          Id="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table"
+          TopLeft="218,132" />
+        <EdgeLayout
+          Id="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class.Paths[ADO NET Source Output]"
+          TopLeft="389.5,174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,122"
+              Start="0,0"
+              End="0,114.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,114.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Read Null Bill Classification from Azure Daily Hist Table">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Bills with no Bill Class from Azure and stage in CDW STG_Bill_Class\Write Records to CDW Staging table stg_bill_class">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="259,42"
+          Id="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class"
+          TopLeft="182,85" />
+        <NodeLayout
+          Size="482,42"
+          Id="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates"
+          TopLeft="70,197" />
+        <EdgeLayout
+          Id="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure.Paths[ADO NET Source Output]"
+          TopLeft="311.25,127">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70"
+              Start="0,0"
+              End="0,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Get Bills that have added a Bill Class">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Lookup Bill Class that have been updated from the CDW STG_Bill_Class tablet above and stage the info in Azure\Write Bill Records that have changed to Azure Staging Table STGbillClassUpdates">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

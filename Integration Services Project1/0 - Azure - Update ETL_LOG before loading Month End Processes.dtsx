@@ -1,0 +1,253 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/1/2019 3:07:20 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="VACOLTOWENSAR"
+  DTS:CreatorName="DVA\vacoowensr3"
+  DTS:DTSID="{C36E88A5-D77C-489C-A117-2AEC971034D6}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="0 - Azure - Update ETL_LOG before loading Month End Processes"
+  DTS:PackageType="5"
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{24105A7D-3F3F-4673-BF0E-8DCC69D5EDC3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CBOPRODARC.vacopardoo]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{B375746B-4A57-4D59-BE95-F88CCD8E3100}"
+      DTS:ObjectName="CBOPRODARC.vacopardoo">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=vacopardoo[BIO_BIS];Dsn=oracle connection 32bit;">
+          <DTS:Password
+            DTS:Name="pwd"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACJE5bk+9oEGnoPTuH2tbnAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACfSPAgzAmQHmaQZ2gLQnoCAAAAAASAAACgAAAAEAAAADe5ujrCzt/Qey5rD44akasYAAAAO0BdPguCAu3obQBnex/RLD9hjEA+CdXcFAAAAJk3l1S230PQ0LRCxuPPSJzZgr4K</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS]]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{0E431A4E-E718-4219-8628-76305A2A3304}"
+      DTS:ObjectName="oracle connection 32bit.VACOOWENSR3[BIO_BIS]">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=vacopardoo[BIO_BIS];Dsn=oracle connection 32bit;">
+          <DTS:Password
+            DTS:Name="pwd"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACJE5bk+9oEGnoPTuH2tbnAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAhYfoFPnmaQWCfx+Z75P1nAAAAAASAAACgAAAAEAAAAP9V76Yt0rr8mr46k5BGlxwYAAAAHSa+Jxv63LGQm1zRFyP+V6VXklJ/FTEBFAAAADgw8DfhEFq0eZ2h/3Z1qHc4h4MR</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[vac20dbsmpo801.database.usgovcloudapi.net.bis-warehouse-dev.biobisadmin]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{03612AB2-8093-42EE-95F7-0F2A96311D16}"
+      DTS:ObjectName="vac20dbsmpo801.database.usgovcloudapi.net.bis-warehouse-dev.biobisadmin">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=vac20dbsmpo801.database.usgovcloudapi.net;User ID=biobisadmin;Initial Catalog=bis-warehouse-dev;Persist Security Info=True;Application Name=SSIS-0 - Update ETL_LOG before loading Month End Processes-{03612AB2-8093-42EE-95F7-0F2A96311D16}vac20dbsmpo801.database.usgov;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACJE5bk+9oEGnoPTuH2tbnAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAC9ns74iBppWwuWc/OEsJPxAAAAAASAAACgAAAAEAAAAENUhu8zMGfxK53ZE+7LlWogAAAAeVz9jmwY3rSdSydvV9Im8n29rmjN7uCZwsL7jgMvs5YUAAAALd29XMpLfEgqhImDoajkW5uEdOo</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[VhaCDWA01.Vha.Med.Va.Gov.BIO_BIS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{ACAE302E-B45F-4D19-B73B-5BB03FEF733E}"
+      DTS:ObjectName="VhaCDWA01.Vha.Med.Va.Gov.BIO_BIS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=VHACDWDWHSQL52.vha.med.va.gov;Initial Catalog=BIO_BIS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[VHACDWDWHSQL52.vha.med.va.gov.BIO_BIS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E20B961C-61F0-4124-BDD5-03C60719D856}"
+      DTS:ObjectName="VHACDWDWHSQL52.vha.med.va.gov.BIO_BIS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=VHACDWDWHSQL52.vha.med.va.gov;Initial Catalog=BIO_BIS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\0 - Update ETL_LOG before loading &quot;Month End&quot; Processes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{935D2FF9-78CF-404E-9BFB-496A47F50495}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="0 - Update ETL_LOG before loading &quot;Month End&quot; Processes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E20B961C-61F0-4124-BDD5-03C60719D856}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="UPDATE &#xA;&#x9;etl_log&#xA;SET&#xA;&#x9;fiscal_year_begin_date = j.fiscal_year_begin_date,&#xA; &#x9;fiscal_year_end_date = j.fiscal_year_end_date,&#xA; &#x9;month_end_load_date = j.month_end_load_date,&#xA;&#x9;fiscal_year = j.fiscal_year,&#xA;&#x9;month_begin_date = j.month_begin_date,&#xA;&#x9;month_end_date = j.month_end_date,&#xA;&#x9;month_id = j.month_dim_sid&#xA;FROM &#xA;&#x9;etl_log k&#xA;&#x9;&#x9;JOIN &#xA;&#x9;&#x9;&#x9;(SELECT DATEADD(DAY,1, month_end_date) month_end_load_date, &#xA;&#x9;&#x9;&#x9;&#x9;fiscal_year, &#xA;&#x9;&#x9;&#x9;&#x9;month_begin_date, &#xA;&#x9;&#x9;&#x9;&#x9;month_end_date, &#xA;&#x9;&#x9;&#x9;&#x9;case &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;when month_in_year = 10 &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then DATEADD(MONTH, 12, month_begin_date) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else fiscal_year_begin_date end fiscal_year_begin_date, &#xA;&#x9;&#x9;&#x9;&#x9;case &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;when month_in_year = 10 &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;then DATEADD(MONTH, 12, fiscal_year_end_date) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9; else fiscal_year_end_date end fiscal_year_end_date,&#xA;&#x9;&#x9;&#x9;&#x9;month_dim_sid &#xA;&#x9;&#x9;&#x9;FROM&#xA;&#x9;&#x9;&#x9;&#x9;dim_month m) j&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ON j.month_begin_date = DATEADD(MONTH, 1, k.month_begin_date) ;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update ARC Oracle BIO_BIS_ETL_LOG"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{8589E626-DDBA-40B5-BD4B-90FD589D4DA8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update ARC Oracle BIO_BIS_ETL_LOG"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B375746B-4A57-4D59-BE95-F88CCD8E3100}"
+          SQLTask:SqlStatementSource="UPDATE bio_bis_etl_log l&#xA;   SET (l.month_dim_sid,&#xA;        l.month_begin_date,&#xA;        l.month_end_date,&#xA;        l.fiscal_year_begin_date,&#xA;        l.fiscal_year_end_date,&#xA;        l.fiscal_year) =&#xA;           (SELECT a.month_dim_sid,&#xA;                   a.month_begin_date,&#xA;                   a.month_end_date,&#xA;                   a.fiscal_year_begin_date,&#xA;                   a.fiscal_year_end_date,&#xA;                   a.fiscal_year&#xA;              FROM dim_month a, bio_bis_etl_log l&#xA;             WHERE a.month_begin_date = ADD_MONTHS (l.month_begin_date, 1));" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Azure BioBisETLLog table with new month"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C28D375E-B9E3-4004-B0D0-42F6A470BBDF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Azure BioBisETLLog table with new month"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{03612AB2-8093-42EE-95F7-0F2A96311D16}"
+          SQLTask:SqlStatementSource="UPDATE&#x9;&#xA;&#x9;biobis.BioBisETLLog &#xA;SET&#x9;&#x9;&#xA;&#x9;BioBisETLLog.MonthDimSID = a.MonthDimSID,&#xA; &#x9;BioBisETLLog.MonthBeginDate = a.MonthBeginDate,&#xA; &#x9;BioBisETLLog.MonthEndDate = a.MonthEndDate,&#xA; &#x9;BioBisETLLog.FiscalYearBeginDate = a.FiscalYearBeginDate,&#xA;&#x9;BioBisETLLog.FiscalYearEndDate  = a.FiscalYearEndDate,&#xA; &#x9;BioBisETLLog.FiscalYear =  a.FiscalYear&#xA; FROM&#x9;biobis.DimMonth a&#xA;&#x9;&#x9;JOIN biobis.BioBisETLLog l&#xA;&#x9;&#x9;&#x9; ON a.MonthBeginDate = DATEADD(MONTH,1,l.MonthBeginDate);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{977D0A05-6877-4847-A8CD-B56B5725244C}"
+      DTS:From="Package\0 - Update ETL_LOG before loading &quot;Month End&quot; Processes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Update Azure BioBisETLLog table with new month" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{90677E81-B139-4CA3-A22F-162526ADACAD}"
+      DTS:From="Package\0 - Update ETL_LOG before loading &quot;Month End&quot; Processes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Update ARC Oracle BIO_BIS_ETL_LOG" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="360,42"
+          Id="Package\0 - Update ETL_LOG before loading &quot;Month End&quot; Processes"
+          TopLeft="150,42" />
+        <NodeLayout
+          Size="277,42"
+          Id="Package\Update ARC Oracle BIO_BIS_ETL_LOG"
+          TopLeft="360,264" />
+        <NodeLayout
+          Size="325,42"
+          Id="Package\Update Azure BioBisETLLog table with new month"
+          TopLeft="3,266" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="271.333333333333,84">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-105.833333333333,182"
+              Start="0,0"
+              End="-105.833333333333,174.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69.283185840708" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,69.283185840708"
+                    Point2="0,73.283185840708"
+                    Point3="-4,73.283185840708" />
+                  <mssgle:LineSegment
+                    End="-101.833333333333,73.283185840708" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-101.833333333333,73.283185840708"
+                    Point2="-105.833333333333,73.283185840708"
+                    Point3="-105.833333333333,77.283185840708" />
+                  <mssgle:LineSegment
+                    End="-105.833333333333,174.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="388.666666666667,84">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="109.833333333333,180"
+              Start="0,0"
+              End="109.833333333333,172.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.4778761061947" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,68.4778761061947"
+                    Point2="0,72.4778761061947"
+                    Point3="4,72.4778761061947" />
+                  <mssgle:LineSegment
+                    End="105.833333333333,72.4778761061947" />
+                  <mssgle:CubicBezierSegment
+                    Point1="105.833333333333,72.4778761061947"
+                    Point2="109.833333333333,72.4778761061947"
+                    Point3="109.833333333333,76.4778761061947" />
+                  <mssgle:LineSegment
+                    End="109.833333333333,172.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

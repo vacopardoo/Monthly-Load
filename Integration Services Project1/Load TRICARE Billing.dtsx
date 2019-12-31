@@ -1,0 +1,1039 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/8/2019 4:07:45 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="VACOLTOWENSAR"
+  DTS:CreatorName="DVA\vacoowensr3"
+  DTS:DTSID="{B727EF82-0A23-44CF-9939-8DBFC1C43FEC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1300.371"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Load TRICARE Billing"
+  DTS:PackageType="5"
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{07B766FE-AD78-477E-B698-002A44DC2F4D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS]]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{E269F8DA-3C54-4E4E-B40D-7B52544E0318}"
+      DTS:ObjectName="oracle connection 32bit.VACOOWENSR3[BIO_BIS]">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=VACOOWENSR3[BIO_BIS];Dsn=oracle connection 32bit;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[VhaCDWA01.Vha.Med.Va.Gov.BIO_BIS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CCC16376-F65A-4A71-882B-B1519077D135}"
+      DTS:ObjectName="VhaCDWA01.Vha.Med.Va.Gov.BIO_BIS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=VHACDWDWHSQL52.VHA.MED.VA.GOV;Initial Catalog=BIO_BIS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load FACT TRICARE Billings"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0E8C4AEC-A511-4D5F-9599-4E41531DC190}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load FACT TRICARE Billings"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E269F8DA-3C54-4E4E-B40D-7B52544E0318}"
+          SQLTask:SqlStatementSource="INSERT INTO FACT_BILLINGS_RSC&#xA;SELECT &#xA;   E.MONTH_DIM_SID, LOCATION_DIM_SID, REVENUE_SOURCE_CODE_DIM_SID, &#xA;   SUM(NUM_BILLS)NUM_BILLS, SUM(BILL_AMT)BILL_AMT, SUM(NUM_BILLS_FYTD)NUM_BILLS_FYTD, &#xA;   SUM(BILL_AMT_FYTD)BILL_AMT_FYTD&#xA;FROM BIO_BIS.STG_BILLINGS_RSC B, DIM_LOCATION L, DIM_REVENUE_SOURCE_CODE R,&#xA;     BIO_BIS_ETL_LOG E&#xA;WHERE B.STA3N = L.STATION_ID&#xA;AND B.REVENUESOURCECODE = REVENUE_SOURCE_CODE&#xA;AND E.MONTH_DIM_SID = B.MONTH_DIM_SID&#xA;GROUP BY E.MONTH_DIM_SID, LOCATION_DIM_SID, REVENUE_SOURCE_CODE_DIM_SID;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load TRICARE Billing"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{446555D3-1F02-4A04-894A-06515374C0A0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load TRICARE Billing"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CCC16376-F65A-4A71-882B-B1519077D135}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="EXECUTE load_TRICARE_Billing" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Move stg_tricare_billing data from SQL Server to Oracle"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{66B7C69D-C540-4160-9423-F6B06399AD53}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Move stg_tricare_billing data from SQL Server to Oracle"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Inputs[Data Conversion Input].Columns[month_dim_sid]"
+                      cachedDataType="i4"
+                      cachedName="month_dim_sid"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[month_dim_sid]" />
+                    <inputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Inputs[Data Conversion Input].Columns[sta3n]"
+                      cachedDataType="i2"
+                      cachedName="sta3n"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[sta3n]" />
+                    <inputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Inputs[Data Conversion Input].Columns[revenuesourcecode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="revenuesourcecode"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[revenuesourcecode]" />
+                    <inputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Inputs[Data Conversion Input].Columns[num_bills]"
+                      cachedDataType="i4"
+                      cachedName="num_bills"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[num_bills]" />
+                    <inputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Inputs[Data Conversion Input].Columns[bill_amt]"
+                      cachedDataType="numeric"
+                      cachedName="bill_amt"
+                      cachedPrecision="38"
+                      cachedScale="4"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[bill_amt]" />
+                    <inputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Inputs[Data Conversion Input].Columns[num_bills_fytd]"
+                      cachedDataType="i4"
+                      cachedName="num_bills_fytd"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[num_bills_fytd]" />
+                    <inputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Inputs[Data Conversion Input].Columns[bill_amt_fytd]"
+                      cachedDataType="numeric"
+                      cachedName="bill_amt_fytd"
+                      cachedPrecision="38"
+                      cachedScale="4"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[bill_amt_fytd]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of month_dim_sid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of month_dim_sid]"
+                      name="Copy of month_dim_sid"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[month_dim_sid]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of sta3n]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of sta3n]"
+                      name="Copy of sta3n"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[sta3n]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of revenuesourcecode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of revenuesourcecode]"
+                      name="Copy of revenuesourcecode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[revenuesourcecode]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of num_bills]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of num_bills]"
+                      name="Copy of num_bills"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[num_bills]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of bill_amt]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of bill_amt]"
+                      name="Copy of bill_amt"
+                      precision="38"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[bill_amt]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of num_bills_fytd]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of num_bills_fytd]"
+                      name="Copy of num_bills_fytd"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[num_bills_fytd]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of bill_amt_fytd]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of bill_amt_fytd]"
+                      name="Copy of bill_amt_fytd"
+                      precision="38"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[bill_amt_fytd]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination"
+              componentClassID="Attunity.SSISODBCDst"
+              description="ODBC Destination"
+              name="ODBC Destination"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The method used for inserting data. Possible values are 'Batch' or 'Row by row'."
+                  expressionType="Notify"
+                  name="InsertMethod"
+                  typeConverter="InsertMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs"
+                  typeConverter="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The ODBC C data type for binding numeric data."
+                  expressionType="Notify"
+                  name="BindNumericAs"
+                  typeConverter="BindNumericAs">0</property>
+                <property
+                  dataType="System.String"
+                  description="Destination table"
+                  expressionType="Notify"
+                  name="TableName">"BIO_BIS"."STG_BILLINGS_RSC"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows inserted per batch."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of rows inserted under the same transaction."
+                  expressionType="Notify"
+                  name="TransactionSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines the chunk size allocation for LOB columns"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The code page to use when code page information is unavailable from the data source."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Connections[ODBCConnection]"
+                  connectionManagerID="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS]]"
+                  connectionManagerRefId="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS]]"
+                  description="The ODBC runtime connection"
+                  name="ODBCConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ODBC Destination Input"
+                  truncationRowDisposition="FailComponent">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].Columns[month_dim_sid]"
+                      cachedDataType="i4"
+                      cachedName="month_dim_sid"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[MONTH_DIM_SID]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[month_dim_sid]" />
+                    <inputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].Columns[sta3n]"
+                      cachedDataType="i2"
+                      cachedName="sta3n"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[STA3N]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[sta3n]" />
+                    <inputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].Columns[revenuesourcecode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="revenuesourcecode"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REVENUESOURCECODE]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[revenuesourcecode]" />
+                    <inputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].Columns[num_bills]"
+                      cachedDataType="i4"
+                      cachedName="num_bills"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_BILLS]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[num_bills]" />
+                    <inputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].Columns[bill_amt]"
+                      cachedDataType="numeric"
+                      cachedName="bill_amt"
+                      cachedPrecision="38"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[BILL_AMT]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[bill_amt]" />
+                    <inputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].Columns[num_bills_fytd]"
+                      cachedDataType="i4"
+                      cachedName="num_bills_fytd"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_BILLS_FYTD]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[num_bills_fytd]" />
+                    <inputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].Columns[bill_amt_fytd]"
+                      cachedDataType="numeric"
+                      cachedName="bill_amt_fytd"
+                      cachedPrecision="38"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[BILL_AMT_FYTD]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[bill_amt_fytd]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[MONTH_DIM_SID]"
+                      dataType="r8"
+                      name="MONTH_DIM_SID" />
+                    <externalMetadataColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[STA3N]"
+                      dataType="r8"
+                      name="STA3N" />
+                    <externalMetadataColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REVENUESOURCECODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="REVENUESOURCECODE" />
+                    <externalMetadataColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_BILLS]"
+                      dataType="r8"
+                      name="NUM_BILLS" />
+                    <externalMetadataColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[BILL_AMT]"
+                      dataType="numeric"
+                      name="BILL_AMT"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_BILLS_FYTD]"
+                      dataType="r8"
+                      name="NUM_BILLS_FYTD" />
+                    <externalMetadataColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[BILL_AMT_FYTD]"
+                      dataType="numeric"
+                      name="BILL_AMT_FYTD"
+                      precision="15"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output]"
+                  isErrorOut="true"
+                  name="ODBC Destination Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[MONTH_DIM_SID]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[MONTH_DIM_SID]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[MONTH_DIM_SID]"
+                      name="MONTH_DIM_SID" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[STA3N]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[STA3N]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[STA3N]"
+                      name="STA3N" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[REVENUESOURCECODE]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REVENUESOURCECODE]"
+                      length="10"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[REVENUESOURCECODE]"
+                      name="REVENUESOURCECODE" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_BILLS]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_BILLS]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_BILLS]"
+                      name="NUM_BILLS" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[BILL_AMT]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[BILL_AMT]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[BILL_AMT]"
+                      name="BILL_AMT"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_BILLS_FYTD]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_BILLS_FYTD]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_BILLS_FYTD]"
+                      name="NUM_BILLS_FYTD" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[BILL_AMT_FYTD]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[BILL_AMT_FYTD]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[BILL_AMT_FYTD]"
+                      name="BILL_AMT_FYTD"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Dflt].[stg_tricare_billing]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[VhaCDWA01.Vha.Med.Va.Gov.BIO_BIS]"
+                  connectionManagerRefId="Package.ConnectionManagers[VhaCDWA01.Vha.Med.Va.Gov.BIO_BIS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[month_dim_sid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[month_dim_sid]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[month_dim_sid]"
+                      name="month_dim_sid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[sta3n]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sta3n]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[sta3n]"
+                      name="sta3n"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[revenuesourcecode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[revenuesourcecode]"
+                      length="10"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[revenuesourcecode]"
+                      name="revenuesourcecode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[num_bills]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[num_bills]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[num_bills]"
+                      name="num_bills"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[bill_amt]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[bill_amt]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[bill_amt]"
+                      name="bill_amt"
+                      precision="38"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[num_bills_fytd]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[num_bills_fytd]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[num_bills_fytd]"
+                      name="num_bills_fytd"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[bill_amt_fytd]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[bill_amt_fytd]"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].Columns[bill_amt_fytd]"
+                      name="bill_amt_fytd"
+                      precision="38"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[month_dim_sid]"
+                      dataType="i4"
+                      name="month_dim_sid" />
+                    <externalMetadataColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sta3n]"
+                      dataType="i2"
+                      name="sta3n" />
+                    <externalMetadataColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[revenuesourcecode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="revenuesourcecode" />
+                    <externalMetadataColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[num_bills]"
+                      dataType="i4"
+                      name="num_bills" />
+                    <externalMetadataColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[bill_amt]"
+                      dataType="numeric"
+                      name="bill_amt"
+                      precision="38"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[num_bills_fytd]"
+                      dataType="i4"
+                      name="num_bills_fytd" />
+                    <externalMetadataColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[bill_amt_fytd]"
+                      dataType="numeric"
+                      name="bill_amt_fytd"
+                      precision="38"
+                      scale="4" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[month_dim_sid]"
+                      dataType="i4"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[month_dim_sid]"
+                      name="month_dim_sid" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sta3n]"
+                      dataType="i2"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sta3n]"
+                      name="sta3n" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[revenuesourcecode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[revenuesourcecode]"
+                      name="revenuesourcecode" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[num_bills]"
+                      dataType="i4"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[num_bills]"
+                      name="num_bills" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[bill_amt]"
+                      dataType="numeric"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[bill_amt]"
+                      name="bill_amt"
+                      precision="38"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[num_bills_fytd]"
+                      dataType="i4"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[num_bills_fytd]"
+                      name="num_bills_fytd" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[bill_amt_fytd]"
+                      dataType="numeric"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[bill_amt_fytd]"
+                      name="bill_amt_fytd"
+                      precision="38"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Move stg_tricare_billing data from SQL Server to Oracle.Paths[Data Conversion Output]"
+              endId="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination.Inputs[ODBC Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Move stg_tricare_billing data from SQL Server to Oracle.Paths[OLE DB Source Output]"
+              endId="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\truncate table stg_tricare_billing"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D5538D16-F63E-4EC9-9614-EAB05E9B3B61}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="truncate table stg_tricare_billing"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CCC16376-F65A-4A71-882B-B1519077D135}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="truncate table stg_tricare_billing;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{9A03B94C-6315-4F50-B299-3A74E23218E0}"
+      DTS:From="Package\Load TRICARE Billing"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Move stg_tricare_billing data from SQL Server to Oracle" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{96BCD3DE-2BC7-4436-8CC5-BD5F4984D149}"
+      DTS:From="Package\truncate table stg_tricare_billing"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load TRICARE Billing" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{C25126C4-07C3-4DB2-942B-F20E496D9CE7}"
+      DTS:From="Package\Move stg_tricare_billing data from SQL Server to Oracle"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load FACT TRICARE Billings" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Load FACT TRICARE Billings"
+          TopLeft="213,446" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Load TRICARE Billing"
+          TopLeft="232,154" />
+        <NodeLayout
+          Size="343,42"
+          Id="Package\Move stg_tricare_billing data from SQL Server to Oracle"
+          TopLeft="153,296" />
+        <NodeLayout
+          Size="233,42"
+          Id="Package\truncate table stg_tricare_billing"
+          TopLeft="198,25" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="323.25,196">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,100"
+              Start="0,0"
+              End="0,92.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,92.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="318.25,67">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,87"
+              Start="0,0"
+              End="0,79.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,79.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="322,338">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,108"
+              Start="0,0"
+              End="0,100.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,100.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Move stg_tricare_billing data from SQL Server to Oracle">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source"
+          TopLeft="255,257" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Move stg_tricare_billing data from SQL Server to Oracle\Data Conversion"
+          TopLeft="557,253" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination"
+          TopLeft="859,252" />
+        <EdgeLayout
+          Id="Package\Move stg_tricare_billing data from SQL Server to Oracle.Paths[OLE DB Source Output]"
+          TopLeft="407,276">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="150,0"
+              Start="0,0"
+              End="142.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="142.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Move stg_tricare_billing data from SQL Server to Oracle.Paths[Data Conversion Output]"
+          TopLeft="715,273.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="144,0"
+              Start="0,0"
+              End="136.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="136.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Move stg_tricare_billing data from SQL Server to Oracle\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Move stg_tricare_billing data from SQL Server to Oracle\ODBC Destination">
+    <Properties>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

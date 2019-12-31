@@ -1,0 +1,889 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/27/2019 2:12:14 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="VACOLTOWENSAR"
+  DTS:CreatorName="DVA\vacoowensr3"
+  DTS:DTSID="{989A3B76-7E8E-4E65-927E-7BDE136456BB}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1300.371"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Load Patient Ins"
+  DTS:PackageType="5"
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{EFD5A7E5-EBAF-4BEC-A60A-B176FA6DDCFE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[oracle connection 32bit.vacoowensr3]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{05D80FC3-3E3C-4E75-BD9D-69864D66C9BB}"
+      DTS:ObjectName="oracle connection 32bit.vacoowensr3">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=vacoowensr3;Dsn=oracle connection 32bit;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS]]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{C6416914-1CA0-47E7-AB93-227F87A83A76}"
+      DTS:ObjectName="oracle connection 32bit.VACOOWENSR3[BIO_BIS]">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=VACOOWENSR3[BIO_BIS];Dsn=oracle connection 32bit;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load Patient Insurance"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{EAC26295-1836-4875-9D0B-D8AC3C5BA54E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Patient Insurance"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6416914-1CA0-47E7-AB93-227F87A83A76}"
+          SQLTask:SqlStatementSource="&#xA;insert into fact_patient_insurance&#xA;  SELECT Month_dim_sid,&#xA;       location_dim_sid,&#xA;       SUM (TOTALNUMPATREGISTERED)          TOTAL_PATIENTS_REGISTERED,&#xA;       SUM (NUMPATCOVERED)                  PATIENTS_COVERED,&#xA;       SUM (NUMPATIENTSCOVEREDBILLABLE)     PATIENTS_COVERED_BILLABLE,&#xA;       SUM (NUMPATCOVEREDHMO)               PATIENTS_COVERED_HMO,&#xA;       SUM (NUMPATCOVEREDMEDICARE)          PATIENTS_COVERED_MEDICARE,&#xA;       SUM (NUMPATCOVEREDMEDIGAP)           PATIENTS_COVERED_MEDIGAP,&#xA;       SUM (NUMPATCOVEREDINDEMNITY)         PATIENTS_COVERED_INDEMNITY,&#xA;       SUM (NUMPANOTCOVERED)                PATIENTS_NOT_COVERED,&#xA;       SUM (NUMPATWITHUNKNOWNINSURANCE)     PATIENTS_W_UNKNOWNINSURANCE,&#xA;       SUM (NUMPATINSURANCEQUESUNANSWERED)  PATIENTS_QUEST_UNANSWERED,&#xA;       SUM (NUMPATDECEASED)                 NUMPATDECEASED,&#xA;       SUM (PATIENTS_COVERED_FYTD)          PATIENTS_COVERED_FYTD,&#xA;       SUM (PATIENTS_COVERED_BILLABLE_FYTD) PATIENTS_COVERED_BILLABLE_FYTD,&#xA;       SUM (TOTAL_PATIENTS_REGISTERED_FYTD) TOTAL_PATIENTS_REGISTERED_FYTD,&#xA;       SUM (PATIENTS_COVERED_MEDICARE_FYTD) PATIENTS_COVERED_MEDICARE_FYTD,&#xA;       SUM (PATIENTSWUNKNOWNINSURANCEFYTD)  PATIENTSWUNKNOWNINSURANCEFYTD,&#xA;       SUM (PATIENTSQUESTUNANSWEREDFYTD)    PATIENTSQUESTUNANSWEREDFYTD,&#xA;       station_Id,&#xA;       2017 FY,&#xA;       SUM (PATIENTS_COVERED_HMO_FYTD)      PATIENTS_COVERED_HMO_FYTD,&#xA;       SUM (PATIENTS_COVERED_MEDIGAP_FYTD)  PATIENTS_COVERED_MEDIGAP_FYTD,&#xA;       SUM (PATIENTSCOVEREDINDEMNITYFYTD)   PATIENTSCOVEREDINDEMNITYFYTD,&#xA;       SUM (PATIENTS_NOT_COVERED_FYTD)      PATIENTS_NOT_COVERED_FYTD,&#xA;       SUM (PATIENTS_DECEASED_FYTD)         PATIENTS_DECEASED_FYTD&#xA;    FROM ((SELECT location_dim_sid,&#xA;                  a.MONTH_DIM_SID,&#xA;                  L.STATION_ID,&#xA;                  TOTALNUMPATREGISTERED,&#xA;                  NUMPATCOVERED,&#xA;                  NUMPATIENTSCOVEREDBILLABLE,&#xA;                  NUMPATCOVEREDHMO,&#xA;                  NUMPATCOVEREDMEDICARE,&#xA;                  NUMPATCOVEREDMEDIGAP,&#xA;                  NUMPATCOVEREDINDEMNITY,&#xA;                  NUMPANOTCOVERED,&#xA;                  NUMPATWITHUNKNOWNINSURANCE,&#xA;                  NUMPATINSURANCEQUESUNANSWERED,&#xA;                  NUMPATDECEASED,&#xA;                  0 TOTAL_PATIENTS_REGISTERED_FYTD,&#xA;                  0 PATIENTS_COVERED_FYTD,&#xA;                  0 PATIENTS_COVERED_BILLABLE_FYTD,&#xA;                  0 PATIENTS_COVERED_HMO_FYTD,&#xA;                  0 PATIENTS_COVERED_MEDICARE_FYTD,&#xA;                  0 PATIENTS_COVERED_MEDIGAP_FYTD,&#xA;                  0 PATIENTSCOVEREDINDEMNITYFYTD,&#xA;                  0 PATIENTS_NOT_COVERED_FYTD,&#xA;                  0 PATIENTSWUNKNOWNINSURANCEFYTD,&#xA;                  0 PATIENTSQUESTUNANSWEREDFYTD,&#xA;                  0 PATIENTS_DECEASED_FYTD&#xA;             FROM STG_NEW_PATIENTS a, bio_Bis.dim_location l, bio_bis_etl_log e&#xA;            WHERE a.Month_dim_sid = e.month_dim_sid AND a.station_id = l.station_id)&#xA;          UNION ALL&#xA;          (  SELECT location_dim_sid,&#xA;                    MAX (A.month_dim_sid),&#xA;                    L.station_id,&#xA;                    0 TOTALNUMPATREGISTERED,&#xA;                    0 NUMPATCOVERED,&#xA;                    0 NUMPATIENTSCOVEREDBILLABLE,&#xA;                    0 NUMPATCOVEREDHMO,&#xA;                    0 NUMPATCOVEREDMEDICARE,&#xA;                    0 NUMPATCOVEREDMEDIGAP,&#xA;                    0 NUMPATCOVEREDINDEMNITY,&#xA;                    0 NUMPANOTCOVERED,&#xA;                    0 NUMPATWITHUNKNOWNINSURANCE,&#xA;                    0 NUMPATINSURANCEQUESUNANSWERED,&#xA;                    0 NUMPATDECEASED,&#xA;                    SUM (TOTALNUMPATREGISTERED),&#xA;                    SUM (NUMPATCOVERED),&#xA;                    SUM (NUMPATIENTSCOVEREDBILLABLE),&#xA;                    SUM (NUMPATCOVEREDHMO),&#xA;                    SUM (NUMPATCOVEREDMEDICARE),&#xA;                    SUM (NUMPATCOVEREDMEDIGAP),&#xA;                    SUM (NUMPATCOVEREDINDEMNITY),&#xA;                    SUM (NUMPANOTCOVERED),&#xA;                    SUM (NUMPATWITHUNKNOWNINSURANCE),&#xA;                    SUM (NUMPATINSURANCEQUESUNANSWERED),&#xA;                    SUM (NUMPATDECEASED)&#xA;               FROM STG_NEW_PATIENTS  a,&#xA;                    bio_Bis.dim_location L,&#xA;                    BIO_bIS.dim_month M,&#xA;                    bio_bis_etl_log e&#xA;              WHERE     A.Month_dim_sid = M.MONTH_DIM_SID&#xA;                    AND M.FISCAL_YEAR = e.fiscal_year&#xA;                    AND M.month_dim_sid &lt;= e.month_dim_sid&#xA;                    AND a.station_id = l.station_id&#xA;           GROUP BY location_dim_sid, L.station_id))&#xA;GROUP BY location_dim_sid, Month_dim_sid, station_id;&#xA;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load stg_mew_patients"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2114843D-B9B7-4FD3-86E9-EAE2888A4983}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load stg_mew_patients"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS"
+              componentClassID="Attunity.SSISODBCSrc"
+              description="ODBC Source"
+              name="CPAC_STG STG_NEW_PATIENTS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The name of the table to be fetched."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand">SELECT 
+ location_dim_sid, ACCT_MONTH_ID, 
+   FACILITY_ID, TOTAL_PATIENTS_REGISTERED, PATIENTS_COVERED, 
+   PATIENTS_COVERED_BILLABLE, PATIENTS_COVERED_HMO, PATIENTS_COVERED_MEDICARE, 
+   PATIENTS_COVERED_MEDIGAP, PATIENTS_COVERED_INDEMNITY, PATIENTS_NOT_COVERED, 
+   PATIENTS_W_UNKNOWNINSURANCE, PATIENTS_QUEST_UNANSWERED, PATIENTS_DECEASED 
+  
+FROM CPAC_STG.STG_NEW_PATIENTS a, bio_Bis.dim_location l,bio_bis.bio_bis_etl_log e
+where a.facility_id = l.station_id
+and acct_month_id = e.month_dim_sid</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows fetched per batch."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines the chunk size allocation for LOB columns"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines how the component exposes CHAR columns. If False, CHAR columns are exposed as (multi-)byte strings (DT_STR), if True, CHAR columns are exposed as wide strings (DT_WSTR)"
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The code page to use when code page information is unavailable from the data source."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="The mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The method used for fetching data."
+                  expressionType="Notify"
+                  name="FetchMethod"
+                  typeConverter="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The ODBC C data type for binding numeric data."
+                  expressionType="Notify"
+                  name="BindNumericAs"
+                  typeConverter="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs"
+                  typeConverter="BindCharColumnsAs">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Connections[ODBCConnection]"
+                  connectionManagerID="Package.ConnectionManagers[oracle connection 32bit.vacoowensr3]"
+                  connectionManagerRefId="Package.ConnectionManagers[oracle connection 32bit.vacoowensr3]"
+                  description="The ODBC runtime connection"
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output]"
+                  errorRowDisposition="FailComponent"
+                  name="ODBC Source Output"
+                  truncationRowDisposition="FailComponent">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[LOCATION_DIM_SID]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[LOCATION_DIM_SID]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[LOCATION_DIM_SID]"
+                      name="LOCATION_DIM_SID"
+                      precision="38" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[ACCT_MONTH_ID]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[ACCT_MONTH_ID]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[ACCT_MONTH_ID]"
+                      name="ACCT_MONTH_ID" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[FACILITY_ID]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[FACILITY_ID]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[FACILITY_ID]"
+                      name="FACILITY_ID" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[TOTAL_PATIENTS_REGISTERED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[TOTAL_PATIENTS_REGISTERED]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[TOTAL_PATIENTS_REGISTERED]"
+                      name="TOTAL_PATIENTS_REGISTERED" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED]"
+                      name="PATIENTS_COVERED" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_BILLABLE]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_BILLABLE]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_BILLABLE]"
+                      name="PATIENTS_COVERED_BILLABLE" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_HMO]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_HMO]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_HMO]"
+                      name="PATIENTS_COVERED_HMO" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_MEDICARE]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_MEDICARE]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_MEDICARE]"
+                      name="PATIENTS_COVERED_MEDICARE" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_MEDIGAP]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_MEDIGAP]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_MEDIGAP]"
+                      name="PATIENTS_COVERED_MEDIGAP" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_INDEMNITY]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_INDEMNITY]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_INDEMNITY]"
+                      name="PATIENTS_COVERED_INDEMNITY" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_NOT_COVERED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_NOT_COVERED]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_NOT_COVERED]"
+                      name="PATIENTS_NOT_COVERED" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_W_UNKNOWNINSURANCE]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_W_UNKNOWNINSURANCE]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_W_UNKNOWNINSURANCE]"
+                      name="PATIENTS_W_UNKNOWNINSURANCE" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_QUEST_UNANSWERED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_QUEST_UNANSWERED]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_QUEST_UNANSWERED]"
+                      name="PATIENTS_QUEST_UNANSWERED" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_DECEASED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_DECEASED]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_DECEASED]"
+                      name="PATIENTS_DECEASED" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[LOCATION_DIM_SID]"
+                      dataType="numeric"
+                      name="LOCATION_DIM_SID"
+                      precision="38" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[ACCT_MONTH_ID]"
+                      dataType="r8"
+                      name="ACCT_MONTH_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[FACILITY_ID]"
+                      dataType="r8"
+                      name="FACILITY_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[TOTAL_PATIENTS_REGISTERED]"
+                      dataType="r8"
+                      name="TOTAL_PATIENTS_REGISTERED" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED]"
+                      dataType="r8"
+                      name="PATIENTS_COVERED" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_BILLABLE]"
+                      dataType="r8"
+                      name="PATIENTS_COVERED_BILLABLE" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_HMO]"
+                      dataType="r8"
+                      name="PATIENTS_COVERED_HMO" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_MEDICARE]"
+                      dataType="r8"
+                      name="PATIENTS_COVERED_MEDICARE" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_MEDIGAP]"
+                      dataType="r8"
+                      name="PATIENTS_COVERED_MEDIGAP" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_INDEMNITY]"
+                      dataType="r8"
+                      name="PATIENTS_COVERED_INDEMNITY" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_NOT_COVERED]"
+                      dataType="r8"
+                      name="PATIENTS_NOT_COVERED" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_W_UNKNOWNINSURANCE]"
+                      dataType="r8"
+                      name="PATIENTS_W_UNKNOWNINSURANCE" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_QUEST_UNANSWERED]"
+                      dataType="r8"
+                      name="PATIENTS_QUEST_UNANSWERED" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_DECEASED]"
+                      dataType="r8"
+                      name="PATIENTS_DECEASED" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output]"
+                  isErrorOut="true"
+                  name="ODBC Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[LOCATION_DIM_SID]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[LOCATION_DIM_SID]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[LOCATION_DIM_SID]"
+                      name="LOCATION_DIM_SID"
+                      precision="38" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[ACCT_MONTH_ID]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[ACCT_MONTH_ID]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[ACCT_MONTH_ID]"
+                      name="ACCT_MONTH_ID" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[FACILITY_ID]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[FACILITY_ID]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[FACILITY_ID]"
+                      name="FACILITY_ID" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[TOTAL_PATIENTS_REGISTERED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[TOTAL_PATIENTS_REGISTERED]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[TOTAL_PATIENTS_REGISTERED]"
+                      name="TOTAL_PATIENTS_REGISTERED" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED]"
+                      name="PATIENTS_COVERED" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED_BILLABLE]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_BILLABLE]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED_BILLABLE]"
+                      name="PATIENTS_COVERED_BILLABLE" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED_HMO]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_HMO]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED_HMO]"
+                      name="PATIENTS_COVERED_HMO" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED_MEDICARE]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_MEDICARE]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED_MEDICARE]"
+                      name="PATIENTS_COVERED_MEDICARE" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED_MEDIGAP]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_MEDIGAP]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED_MEDIGAP]"
+                      name="PATIENTS_COVERED_MEDIGAP" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED_INDEMNITY]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_INDEMNITY]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED_INDEMNITY]"
+                      name="PATIENTS_COVERED_INDEMNITY" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_NOT_COVERED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_NOT_COVERED]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_NOT_COVERED]"
+                      name="PATIENTS_NOT_COVERED" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_W_UNKNOWNINSURANCE]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_W_UNKNOWNINSURANCE]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_W_UNKNOWNINSURANCE]"
+                      name="PATIENTS_W_UNKNOWNINSURANCE" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_QUEST_UNANSWERED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_QUEST_UNANSWERED]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_QUEST_UNANSWERED]"
+                      name="PATIENTS_QUEST_UNANSWERED" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_DECEASED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_DECEASED]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[PATIENTS_DECEASED]"
+                      name="PATIENTS_DECEASED" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load stg_mew_patients\stg_new_patients"
+              componentClassID="Attunity.SSISODBCDst"
+              description="ODBC Destination"
+              name="stg_new_patients"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The method used for inserting data. Possible values are 'Batch' or 'Row by row'."
+                  expressionType="Notify"
+                  name="InsertMethod"
+                  typeConverter="InsertMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs"
+                  typeConverter="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The ODBC C data type for binding numeric data."
+                  expressionType="Notify"
+                  name="BindNumericAs"
+                  typeConverter="BindNumericAs">0</property>
+                <property
+                  dataType="System.String"
+                  description="Destination table"
+                  expressionType="Notify"
+                  name="TableName">"BIO_BIS"."STG_NEW_PATIENTS"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows inserted per batch."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of rows inserted under the same transaction."
+                  expressionType="Notify"
+                  name="TransactionSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines the chunk size allocation for LOB columns"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The code page to use when code page information is unavailable from the data source."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load stg_mew_patients\stg_new_patients.Connections[ODBCConnection]"
+                  connectionManagerID="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS]]"
+                  connectionManagerRefId="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS]]"
+                  description="The ODBC runtime connection"
+                  name="ODBCConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ODBC Destination Input"
+                  truncationRowDisposition="FailComponent">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].Columns[FACILITY_ID]"
+                      cachedDataType="r8"
+                      cachedName="FACILITY_ID"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[STATION_ID]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[FACILITY_ID]" />
+                    <inputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].Columns[ACCT_MONTH_ID]"
+                      cachedDataType="r8"
+                      cachedName="ACCT_MONTH_ID"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[MONTH_DIM_SID]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[ACCT_MONTH_ID]" />
+                    <inputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].Columns[TOTAL_PATIENTS_REGISTERED]"
+                      cachedDataType="r8"
+                      cachedName="TOTAL_PATIENTS_REGISTERED"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[TOTALNUMPATREGISTERED]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[TOTAL_PATIENTS_REGISTERED]" />
+                    <inputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].Columns[PATIENTS_COVERED]"
+                      cachedDataType="r8"
+                      cachedName="PATIENTS_COVERED"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATCOVERED]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED]" />
+                    <inputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].Columns[PATIENTS_COVERED_BILLABLE]"
+                      cachedDataType="r8"
+                      cachedName="PATIENTS_COVERED_BILLABLE"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATIENTSCOVEREDBILLABLE]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_BILLABLE]" />
+                    <inputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].Columns[PATIENTS_COVERED_HMO]"
+                      cachedDataType="r8"
+                      cachedName="PATIENTS_COVERED_HMO"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATCOVEREDHMO]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_HMO]" />
+                    <inputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].Columns[PATIENTS_COVERED_MEDICARE]"
+                      cachedDataType="r8"
+                      cachedName="PATIENTS_COVERED_MEDICARE"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATCOVEREDMEDICARE]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_MEDICARE]" />
+                    <inputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].Columns[PATIENTS_COVERED_MEDIGAP]"
+                      cachedDataType="r8"
+                      cachedName="PATIENTS_COVERED_MEDIGAP"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATCOVEREDMEDIGAP]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_MEDIGAP]" />
+                    <inputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].Columns[PATIENTS_COVERED_INDEMNITY]"
+                      cachedDataType="r8"
+                      cachedName="PATIENTS_COVERED_INDEMNITY"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATCOVEREDINDEMNITY]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_INDEMNITY]" />
+                    <inputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].Columns[PATIENTS_NOT_COVERED]"
+                      cachedDataType="r8"
+                      cachedName="PATIENTS_NOT_COVERED"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPANOTCOVERED]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_NOT_COVERED]" />
+                    <inputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].Columns[PATIENTS_W_UNKNOWNINSURANCE]"
+                      cachedDataType="r8"
+                      cachedName="PATIENTS_W_UNKNOWNINSURANCE"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATWITHUNKNOWNINSURANCE]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_W_UNKNOWNINSURANCE]" />
+                    <inputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].Columns[PATIENTS_QUEST_UNANSWERED]"
+                      cachedDataType="r8"
+                      cachedName="PATIENTS_QUEST_UNANSWERED"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATINSURANCEQUESUNANSWERED]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_QUEST_UNANSWERED]" />
+                    <inputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].Columns[PATIENTS_DECEASED]"
+                      cachedDataType="r8"
+                      cachedName="PATIENTS_DECEASED"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATDECEASED]"
+                      lineageId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output].Columns[PATIENTS_DECEASED]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[MONTH_DIM_SID]"
+                      dataType="r8"
+                      name="MONTH_DIM_SID" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[STATION_ID]"
+                      dataType="r8"
+                      name="STATION_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[TOTALNUMPATREGISTERED]"
+                      dataType="numeric"
+                      name="TOTALNUMPATREGISTERED"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATCOVERED]"
+                      dataType="numeric"
+                      name="NUMPATCOVERED"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATIENTSCOVEREDBILLABLE]"
+                      dataType="numeric"
+                      name="NUMPATIENTSCOVEREDBILLABLE"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATCOVEREDHMO]"
+                      dataType="numeric"
+                      name="NUMPATCOVEREDHMO"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATCOVEREDMEDICARE]"
+                      dataType="numeric"
+                      name="NUMPATCOVEREDMEDICARE"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATCOVEREDMEDIGAP]"
+                      dataType="numeric"
+                      name="NUMPATCOVEREDMEDIGAP"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATCOVEREDINDEMNITY]"
+                      dataType="numeric"
+                      name="NUMPATCOVEREDINDEMNITY"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPANOTCOVERED]"
+                      dataType="numeric"
+                      name="NUMPANOTCOVERED"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATWITHUNKNOWNINSURANCE]"
+                      dataType="numeric"
+                      name="NUMPATWITHUNKNOWNINSURANCE"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATINSURANCEQUESUNANSWERED]"
+                      dataType="numeric"
+                      name="NUMPATINSURANCEQUESUNANSWERED"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATDECEASED]"
+                      dataType="numeric"
+                      name="NUMPATDECEASED"
+                      precision="15"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output]"
+                  isErrorOut="true"
+                  name="ODBC Destination Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[MONTH_DIM_SID]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[MONTH_DIM_SID]"
+                      lineageId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[MONTH_DIM_SID]"
+                      name="MONTH_DIM_SID" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[STATION_ID]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[STATION_ID]"
+                      lineageId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[STATION_ID]"
+                      name="STATION_ID" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[TOTALNUMPATREGISTERED]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[TOTALNUMPATREGISTERED]"
+                      lineageId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[TOTALNUMPATREGISTERED]"
+                      name="TOTALNUMPATREGISTERED"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATCOVERED]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATCOVERED]"
+                      lineageId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATCOVERED]"
+                      name="NUMPATCOVERED"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATIENTSCOVEREDBILLABLE]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATIENTSCOVEREDBILLABLE]"
+                      lineageId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATIENTSCOVEREDBILLABLE]"
+                      name="NUMPATIENTSCOVEREDBILLABLE"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATCOVEREDHMO]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATCOVEREDHMO]"
+                      lineageId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATCOVEREDHMO]"
+                      name="NUMPATCOVEREDHMO"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATCOVEREDMEDICARE]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATCOVEREDMEDICARE]"
+                      lineageId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATCOVEREDMEDICARE]"
+                      name="NUMPATCOVEREDMEDICARE"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATCOVEREDMEDIGAP]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATCOVEREDMEDIGAP]"
+                      lineageId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATCOVEREDMEDIGAP]"
+                      name="NUMPATCOVEREDMEDIGAP"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATCOVEREDINDEMNITY]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATCOVEREDINDEMNITY]"
+                      lineageId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATCOVEREDINDEMNITY]"
+                      name="NUMPATCOVEREDINDEMNITY"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPANOTCOVERED]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPANOTCOVERED]"
+                      lineageId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPANOTCOVERED]"
+                      name="NUMPANOTCOVERED"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATWITHUNKNOWNINSURANCE]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATWITHUNKNOWNINSURANCE]"
+                      lineageId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATWITHUNKNOWNINSURANCE]"
+                      name="NUMPATWITHUNKNOWNINSURANCE"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATINSURANCEQUESUNANSWERED]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATINSURANCEQUESUNANSWERED]"
+                      lineageId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATINSURANCEQUESUNANSWERED]"
+                      name="NUMPATINSURANCEQUESUNANSWERED"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATDECEASED]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input].ExternalColumns[NUMPATDECEASED]"
+                      lineageId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[NUMPATDECEASED]"
+                      name="NUMPATDECEASED"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load stg_mew_patients\stg_new_patients.Outputs[ODBC Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load stg_mew_patients.Paths[ODBC Source Output]"
+              endId="Package\Load stg_mew_patients\stg_new_patients.Inputs[ODBC Destination Input]"
+              name="ODBC Source Output"
+              startId="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS.Outputs[ODBC Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{8482C53C-DA5A-4753-A28D-7F37937BD613}"
+      DTS:From="Package\Load stg_mew_patients"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load Patient Insurance" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Load Patient Insurance"
+          TopLeft="139,223" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Load stg_mew_patients"
+          TopLeft="140,124" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="235,166">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load stg_mew_patients">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Load stg_mew_patients\stg_new_patients"
+          TopLeft="494,318" />
+        <NodeLayout
+          Size="236,42"
+          Id="Package\Load stg_mew_patients\CPAC_STG STG_NEW_PATIENTS"
+          TopLeft="107,323" />
+        <EdgeLayout
+          Id="Package\Load stg_mew_patients.Paths[ODBC Source Output]"
+          TopLeft="343,341.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="151,0"
+              Start="0,0"
+              End="143.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="143.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load stg_mew_patients\stg_new_patients">
+    <Properties>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

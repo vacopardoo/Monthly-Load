@@ -1,0 +1,1617 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/22/2019 11:38:57 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="VACOLTOWENSAR"
+  DTS:CreatorName="DVA\vacoowensr3"
+  DTS:DTSID="{A4ABE333-2583-4CF5-9F97-5A11AEF96D6D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="2 - Azure - Load Billings"
+  DTS:PackageType="5"
+  DTS:VersionBuild="178"
+  DTS:VersionGUID="{ACBB1315-A7DC-4B7B-B909-00E6E7CFD55B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS]]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{A862336F-BE80-4A69-AC9E-570756E205CD}"
+      DTS:ObjectName="oracle connection 32bit.VACOOWENSR3[BIO_BIS]">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=vacopardoo[BIO_BIS];Dsn=oracle connection 32bit;">
+          <DTS:Password
+            DTS:Name="pwd"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACJE5bk+9oEGnoPTuH2tbnAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACGsFzk0JGlhWxaO8T74mF3AAAAAASAAACgAAAAEAAAAFJDU37JcTvVdHZ5PSSvB5QYAAAAJnNMtWVYidQZcbKjH0fLgeQ5VW7tUhpLFAAAAIDAwv8FBOxAIxxhuydZaKY1OTtF</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS] 1]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{1DB80928-1663-40EA-9205-03018550F4D1}"
+      DTS:ObjectName="oracle connection 32bit.VACOOWENSR3[BIO_BIS] 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=vacopardoo[BIO_BIS];Dsn=oracle connection 32bit;">
+          <DTS:Password
+            DTS:Name="pwd"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACJE5bk+9oEGnoPTuH2tbnAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADvIQO4iLTvJYUjbOAXXJwFAAAAAASAAACgAAAAEAAAACB37vK9+HyD0AOiTJzMYRIYAAAA8BQ3gm3W70PacucZbtdLFjb3P0gxo3kAFAAAAP7behood5WOFT16jZ+Eh0EnLPvT</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[vac20dbsmpo801.database.usgovcloudapi.net.bis-warehouse-dev.biobisadmin]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{26D5014D-0E2A-4F02-9ADD-AB0E591B9A06}"
+      DTS:ObjectName="vac20dbsmpo801.database.usgovcloudapi.net.bis-warehouse-dev.biobisadmin">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=vac20dbsmpo801.database.usgovcloudapi.net;User ID=biobisadmin;Initial Catalog=bis-warehouse-dev;Persist Security Info=True;Application Name=SSIS-2 - Azure - Load Billings-{26D5014D-0E2A-4F02-9ADD-AB0E591B9A06}vac20dbsmpo801.database.usgovcloudapi.net.bis-warehouse-d;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACJE5bk+9oEGnoPTuH2tbnAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAClgNuwNz6kkokBClFeg0NYAAAAAASAAACgAAAAEAAAAESKwG/GKAjmkuWdZwy0YI8gAAAAaijMAYHZlCLqvxoM7EDCBuVzF9S/dsqL4nODq/J+67YUAAAATtdn6rTd3TAhyH/oPrGLzXCKoUo</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[VhaCDWA01.Vha.Med.Va.Gov.BIO_BIS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5397D372-7DEB-4B5D-8F3A-FC143E104B5F}"
+      DTS:ObjectName="VhaCDWA01.Vha.Med.Va.Gov.BIO_BIS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=VHACDWDWHSQL52.VHA.MED.VA.GOV;Initial Catalog=BIO_BIS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[vhacdwdwhSQL52.vha.med.va.gov.BIO_BIS]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{ACF03907-4C5D-4F3C-A737-2CBEA9AA18C4}"
+      DTS:ObjectName="vhacdwdwhSQL52.vha.med.va.gov.BIO_BIS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=vhacdwdwhSQL52.vha.med.va.gov;Initial Catalog=BIO_BIS;Integrated Security=True;Application Name=SSIS-2 - Azure - Load Billings-{ACF03907-4C5D-4F3C-A737-2CBEA9AA18C4}vhacdwdwhSQL52.vha.med.va.gov.BIO_BIS;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Combine and Load 1st Party into Azure STGBillSummary"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7a6576ec-7458-419e-9632-e0503ab6f7e9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Combine and Load 1st Party into Azure STGBillSummary"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26D5014D-0E2A-4F02-9ADD-AB0E591B9A06}"
+          SQLTask:SqlStatementSource="INSERT INTO biobisstg.STGBillSummary &#xA;   ( &#xA; MonthDimSID, &#xA; BillClassDimSID, &#xA; ARCategorDimSID, &#xA; STA3N, &#xA; RangeID, &#xA; FundDimSID, &#xA; RevenueSourceCode,&#xA; NumBills, &#xA; AmtBills, &#xA; NumBillsFYTD, &#xA; AmtBillsFYTD&#xA;   ) &#xA;SELECT&#xA;   MonthDimSID,&#xA;   BillClassDimSID,&#xA;   ARCategoryDimSID,&#xA;   STA3N,&#xA;   RangeID,&#xA;   FundDimSid,&#xA;   RevenueSourceCode,&#xA;   SUM(ISNULL(NumBills,0)) NumBills,&#xA;   SUM(ISNULL(AmtBills,0)) AmtBills,&#xA;   SUM(ISNULL(NumBillsFYTD,0)) NumBillsFYTD,&#xA;   SUM(ISNULL(AmtBillsFYTD,0)) AmtBillsFYTD&#xA;FROM&#xA; (&#xA; SELECT&#xA;&#x9;  MonthDimSID,&#xA;&#x9;  BillClassDimSID,&#xA;&#x9;  ARCategoryDimSID,&#xA;&#x9;  STA3N,&#xA;&#x9;  RangeID,&#xA;&#x9;  FundDimSid,&#xA;&#x9;  RevenueSourceCode,&#xA;&#x9;  SUM(ISNULL(NumBills,0)) NumBills,&#xA;&#x9;  SUM(ISNULL(AmtBills,0)) AmtBills,&#xA;&#x9;  0 NumBillsFYTD,&#xA;&#x9;  0 AmtBillsFYTD&#xA; FROM&#xA;&#x9;  biobisstg.STGBillings1P&#xA; GROUP BY&#xA;&#x9;  MonthDimSID,&#xA;&#x9;  BillClassDimSID,&#xA;&#x9;  ARCategoryDimSID,&#xA;&#x9;  STA3N,&#xA;&#x9;  RangeID,&#xA;&#x9;  RevenueSourceCode,&#xA;&#x9;  FundDimSID&#xA;UNION ALL&#xA; SELECT&#xA;&#x9;MonthDimSID,&#xA;&#x9;BillClassDimSID,&#xA;&#x9;ARCategoryDimSID,&#xA;&#x9;STA3N,&#xA;&#x9;RangeID,&#xA;&#x9;FundDimSid,&#xA;&#x9;RevenueSourceCode,&#xA;&#x9;0 NumBills,&#xA;&#x9;0 AmtBills,&#xA;&#x9;SUM(ISNULL(NumBillsFYTD,0)) NumBillsFYTD,&#xA;&#x9;SUM(ISNULL(AmtBillsFYTD,0)) AmtBillsFYTD&#xA;  FROM&#xA;&#x9;biobisstg.STGBillings1PFYTD&#xA;  GROUP BY&#xA;&#x9;MonthDimSID,&#xA;&#x9;BillClassDimSID,&#xA;&#x9;ARCategoryDimSID,&#xA;&#x9;STA3N,&#xA;&#x9;RangeID,&#xA;&#x9;RevenueSourceCode,&#xA;&#x9;FundDimSID&#xA; ) a&#xA;--WHERE BillClassDimSID &lt;&gt; -99&#xA;GROUP BY&#xA; MonthDimSID,&#xA; BillClassDimSID,&#xA; ARCategoryDimSID,&#xA; STA3N,&#xA; RangeID,&#xA; RevenueSourceCode,&#xA; FundDimSID&#xA; ;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Combine and Load into Azure STGBillSummary"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5F87FAB3-9AEF-47BB-8CCE-69B9F08D8FCC}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Combine and Load into Azure STGBillSummary"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26D5014D-0E2A-4F02-9ADD-AB0E591B9A06}"
+          SQLTask:SqlStatementSource="INSERT INTO biobisstg.STGBillSummary &#xA;   (&#x9;&#xA;&#x9;MonthDimSID, &#xA;&#x9;BillClassDimSID, &#xA;&#x9;ARCategorDimSID, &#xA;&#x9;STA3N, &#xA;&#x9;RangeID, &#xA;&#x9;FundDimSID, &#xA;&#x9;RevenueSourceCode,&#xA;&#x9;NumBills, &#xA;&#x9;AmtBills, &#xA;&#x9;NumBillsFYTD, &#xA;&#x9;AmtBillsFYTD&#xA;   ) &#xA;SELECT&#xA;   MonthDimSID,&#xA;   BillClassDimSID,&#xA;   ARCategoryDimSID,&#xA;   STA3N,&#xA;   RangeID,&#xA;   -99 FundDimSid,&#xA;   RevenueSourceCode,&#xA;   SUM(ISNULL(NumBills,0)) NumBills,&#xA;   SUM(ISNULL(AmtBills,0)) AmtBills,&#xA;   SUM(ISNULL(NumBillsFYTD,0)) NumBillsFYTD,&#xA;   SUM(ISNULL(AmtBillsFYTD,0)) AmtBillsFYTD&#xA;FROM&#xA;&#x9;(&#xA;&#x9;SELECT&#xA;&#x9;&#x9;MonthDimSID,&#xA;&#x9;&#x9;BillClassDimSID,&#xA;&#x9;&#x9;ARCategoryDimSID,&#xA;&#x9;&#x9;STA3N,&#xA;&#x9;&#x9;RangeID,&#xA;&#x9;&#x9;-99 FundDimSid,&#xA;&#x9;&#x9;RevenueSourceCode,&#xA;&#x9;&#x9;SUM(ISNULL(NumBills,0)) NumBills,&#xA;&#x9;&#x9;SUM(ISNULL(AmtBills,0)) AmtBills,&#xA;&#x9;&#x9;0 NumBillsFYTD,&#xA;&#x9;&#x9;0 AmtBillsFYTD&#xA;&#x9;FROM&#xA;&#x9;&#x9;biobisstg.STGBillings&#xA;&#x9;GROUP BY&#xA;&#x9;&#x9;MonthDimSID,&#xA;&#x9;&#x9;BillClassDimSID,&#xA;&#x9;&#x9;ARCategoryDimSID,&#xA;&#x9;&#x9;STA3N,&#xA;&#x9;&#x9;RangeID,&#xA;&#x9;&#x9;RevenueSourceCode&#xA;&#x9;UNION ALL&#xA;&#x9;SELECT&#xA;&#x9;&#x9;MonthDimSID,&#xA;&#x9;&#x9;BillClassDimSID,&#xA;&#x9;&#x9;ARCategoryDimSID,&#xA;&#x9;&#x9;STA3N,&#xA;&#x9;&#x9;RangeID,&#xA;&#x9;&#x9;-99 FundDimSid,&#xA;&#x9;&#x9;RevenueSourceCode,&#xA;&#x9;&#x9;0 NumBills,&#xA;&#x9;&#x9;0 AmtBills,&#xA;&#x9;&#x9;SUM(ISNULL(NumBillsFYTD,0)) NumBillsFYTD,&#xA;&#x9;&#x9;SUM(ISNULL(AmtBillsFYTD,0)) AmtBillsFYTD&#xA;&#x9;FROM&#xA;&#x9;&#x9;biobisstg.STGBillingsFYTD&#xA;&#xA;&#x9;GROUP BY&#xA;&#x9;&#x9;MonthDimSID,&#xA;&#x9;&#x9;BillClassDimSID,&#xA;&#x9;&#x9;ARCategoryDimSID,&#xA;&#x9;&#x9;STA3N,&#xA;&#x9;&#x9;RangeID,&#xA;&#x9;&#x9;RevenueSourceCode&#xA;&#x9;) a&#xA;--WHERE BillClassDimSID &lt;&gt; -99&#xA;GROUP BY&#xA;&#x9;MonthDimSID,&#xA;&#x9;BillClassDimSID,&#xA;&#x9;ARCategoryDimSID,&#xA;&#x9;STA3N,&#xA;&#x9;RangeID,&#xA;&#x9;RevenueSourceCode&#xA;&#x9;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Bill  Adjustments"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{59E77973-9006-4A69-99D4-16C41B446194}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Bill  Adjustments"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Get Bill  Adjustments\Move Records to Azure"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Move Records to Azure"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"biobisstg"."STGBillingAdjustments"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Bill  Adjustments\Move Records to Azure.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[vac20dbsmpo801.database.usgovcloudapi.net.bis-warehouse-dev.biobisadmin]"
+                  connectionManagerRefId="Package.ConnectionManagers[vac20dbsmpo801.database.usgovcloudapi.net.bis-warehouse-dev.biobisadmin]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Get Bill  Adjustments\Move Records to Azure.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Bill  Adjustments\Move Records to Azure.Inputs[ADO NET Destination Input].Columns[accountsreceivablesid]"
+                      cachedDataType="i8"
+                      cachedName="accountsreceivablesid"
+                      externalMetadataColumnId="Package\Get Bill  Adjustments\Move Records to Azure.Inputs[ADO NET Destination Input].ExternalColumns[AccountsReceivableSID]"
+                      lineageId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].Columns[accountsreceivablesid]" />
+                    <inputColumn
+                      refId="Package\Get Bill  Adjustments\Move Records to Azure.Inputs[ADO NET Destination Input].Columns[transactionamount]"
+                      cachedDataType="numeric"
+                      cachedName="transactionamount"
+                      cachedPrecision="38"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Get Bill  Adjustments\Move Records to Azure.Inputs[ADO NET Destination Input].ExternalColumns[TransactionAmount]"
+                      lineageId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].Columns[transactionamount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Bill  Adjustments\Move Records to Azure.Inputs[ADO NET Destination Input].ExternalColumns[AccountsReceivableSID]"
+                      dataType="i8"
+                      name="AccountsReceivableSID" />
+                    <externalMetadataColumn
+                      refId="Package\Get Bill  Adjustments\Move Records to Azure.Inputs[ADO NET Destination Input].ExternalColumns[TransactionAmount]"
+                      dataType="numeric"
+                      name="TransactionAmount"
+                      precision="38"
+                      scale="4" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Get Bill  Adjustments\Move Records to Azure.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Get Bill  Adjustments\Move Records to Azure.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Bill  Adjustments\Move Records to Azure.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Bill  Adjustments\Move Records to Azure.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Bill  Adjustments\Move Records to Azure.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Bill  Adjustments\Move Records to Azure.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Read 1P Adjustments, ReEstablish Records"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">WITH get_transactions  AS
+(
+SELECT 
+	month_id, 
+	accountsreceivablesid,
+	a.sta3n,  
+	transactiondatetime, 
+	transactionamount ,
+	transactionnumber, 
+	principaamountcollected, 
+	artransactiontype tran_artransactiontype, 
+	artransactionsid
+FROM 
+	cdwwork.IB.ARTRANSACTION a, 
+	BIO_BIS.DFLT.etl_log , 
+	cdwwork.dim.ARTransactionType t
+WHERE 
+	CONVERT(DATE, TRANSACTIONDATETIME)  BETWEEN month_begin_date AND month_end_date
+	AND a.artransactiontypesid = t.artransactiontypesid
+)
+
+
+
+--Using monthly transactions, Get 'INCREASE ADJUSTMENT'/'RE-ESTABLISH' Transactions 
+
+SELECT 
+	accountsreceivablesid, 
+	SUM(transactionamount) transactionamount  --get establish trans
+FROM 
+	cdwwork.ib.ARTRANSACTION k, 
+	cdwwork.dim.ARTransactionType t
+WHERE  
+	k.ARTransactionTypeSID = t.ARTransactionTypeSID
+	and artransactiontype in ('INCREASE ADJUSTMENT','RE-ESTABLISH')
+	and exists (SELECT '1' 
+		FROM get_transactions j
+		WHERE j.ARTransactionSID = k.ARTransactionSID)--current month transactons
+GROUP BY 
+	accountsreceivablesid;</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[vhacdwdwhSQL52.vha.med.va.gov.BIO_BIS]"
+                  connectionManagerRefId="Package.ConnectionManagers[vhacdwdwhSQL52.vha.med.va.gov.BIO_BIS]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].Columns[accountsreceivablesid]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].ExternalColumns[accountsreceivablesid]"
+                      lineageId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].Columns[accountsreceivablesid]"
+                      name="accountsreceivablesid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].Columns[transactionamount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].ExternalColumns[transactionamount]"
+                      lineageId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].Columns[transactionamount]"
+                      name="transactionamount"
+                      precision="38"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].ExternalColumns[accountsreceivablesid]"
+                      dataType="i8"
+                      name="accountsreceivablesid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].ExternalColumns[transactionamount]"
+                      dataType="numeric"
+                      name="transactionamount"
+                      precision="38"
+                      scale="4" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output].Columns[accountsreceivablesid]"
+                      dataType="i8"
+                      lineageId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output].Columns[accountsreceivablesid]"
+                      name="accountsreceivablesid" />
+                    <outputColumn
+                      refId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output].Columns[transactionamount]"
+                      dataType="numeric"
+                      lineageId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output].Columns[transactionamount]"
+                      name="transactionamount"
+                      precision="38"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Get Bill  Adjustments.Paths[ADO NET Source Output]"
+              endId="Package\Get Bill  Adjustments\Move Records to Azure.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Bill  Adjustments FYTD"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{22fb18ce-dd22-46bd-8ce6-98d73dde3554}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Bill  Adjustments FYTD"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Get Bill  Adjustments FYTD\Move Records to Azure"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Move Records to Azure"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"biobisstg"."STGBillingAdjustmentsFYTD"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Bill  Adjustments FYTD\Move Records to Azure.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[vac20dbsmpo801.database.usgovcloudapi.net.bis-warehouse-dev.biobisadmin]"
+                  connectionManagerRefId="Package.ConnectionManagers[vac20dbsmpo801.database.usgovcloudapi.net.bis-warehouse-dev.biobisadmin]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Get Bill  Adjustments FYTD\Move Records to Azure.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Get Bill  Adjustments FYTD\Move Records to Azure.Inputs[ADO NET Destination Input].Columns[accountsreceivablesid]"
+                      cachedDataType="i8"
+                      cachedName="accountsreceivablesid"
+                      externalMetadataColumnId="Package\Get Bill  Adjustments FYTD\Move Records to Azure.Inputs[ADO NET Destination Input].ExternalColumns[AccountsReceivableSID]"
+                      lineageId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].Columns[accountsreceivablesid]" />
+                    <inputColumn
+                      refId="Package\Get Bill  Adjustments FYTD\Move Records to Azure.Inputs[ADO NET Destination Input].Columns[transactionamount]"
+                      cachedDataType="numeric"
+                      cachedName="transactionamount"
+                      cachedPrecision="38"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Get Bill  Adjustments FYTD\Move Records to Azure.Inputs[ADO NET Destination Input].ExternalColumns[TransactionAmount]"
+                      lineageId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].Columns[transactionamount]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Bill  Adjustments FYTD\Move Records to Azure.Inputs[ADO NET Destination Input].ExternalColumns[AccountsReceivableSID]"
+                      dataType="i8"
+                      name="AccountsReceivableSID" />
+                    <externalMetadataColumn
+                      refId="Package\Get Bill  Adjustments FYTD\Move Records to Azure.Inputs[ADO NET Destination Input].ExternalColumns[TransactionAmount]"
+                      dataType="numeric"
+                      name="TransactionAmount"
+                      precision="38"
+                      scale="4" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Get Bill  Adjustments FYTD\Move Records to Azure.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Get Bill  Adjustments FYTD\Move Records to Azure.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Bill  Adjustments FYTD\Move Records to Azure.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Bill  Adjustments FYTD\Move Records to Azure.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Bill  Adjustments FYTD\Move Records to Azure.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Bill  Adjustments FYTD\Move Records to Azure.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Read 1P FYTD Adjustments, ReEstablish Records"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">WITH get_transactions  AS
+(
+SELECT 
+	month_id, 
+	accountsreceivablesid,
+	a.sta3n,  
+	transactiondatetime, 
+	transactionamount ,
+	transactionnumber, 
+	principaamountcollected, 
+	artransactiontype tran_artransactiontype, 
+	artransactionsid
+FROM 
+	cdwwork.IB.ARTRANSACTION a, 
+	BIO_BIS.DFLT.etl_log e, 
+	cdwwork.dim.ARTransactionType t
+WHERE 
+	CONVERT(DATE, transactiondatetime) BETWEEN fiscal_year_begin_date AND fiscal_year_end_date
+	AND fiscal_year = e.fiscal_year
+	AND CONVERT(DATE, transactiondatetime) &lt; month_end_load_date
+	AND a.artransactiontypesid = t.artransactiontypesid
+)
+
+
+
+--Using monthly transactions, Get 'INCREASE ADJUSTMENT'/'RE-ESTABLISH' Transactions 
+
+SELECT 
+	accountsreceivablesid, 
+	SUM(transactionamount) transactionamount  --get establish trans
+FROM 
+	cdwwork.ib.ARTRANSACTION k, 
+	cdwwork.dim.ARTransactionType t
+WHERE  
+	k.ARTransactionTypeSID = t.ARTransactionTypeSID
+	and artransactiontype in ('INCREASE ADJUSTMENT','RE-ESTABLISH')
+	and exists (SELECT '1' 
+		FROM get_transactions j
+		WHERE j.ARTransactionSID = k.ARTransactionSID)--current month transactons
+GROUP BY 
+	accountsreceivablesid;</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[vhacdwdwhSQL52.vha.med.va.gov.BIO_BIS]"
+                  connectionManagerRefId="Package.ConnectionManagers[vhacdwdwhSQL52.vha.med.va.gov.BIO_BIS]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].Columns[accountsreceivablesid]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].ExternalColumns[accountsreceivablesid]"
+                      lineageId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].Columns[accountsreceivablesid]"
+                      name="accountsreceivablesid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].Columns[transactionamount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].ExternalColumns[transactionamount]"
+                      lineageId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].Columns[transactionamount]"
+                      name="transactionamount"
+                      precision="38"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].ExternalColumns[accountsreceivablesid]"
+                      dataType="i8"
+                      name="accountsreceivablesid" />
+                    <externalMetadataColumn
+                      refId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Output].ExternalColumns[transactionamount]"
+                      dataType="numeric"
+                      name="transactionamount"
+                      precision="38"
+                      scale="4" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output].Columns[accountsreceivablesid]"
+                      dataType="i8"
+                      lineageId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output].Columns[accountsreceivablesid]"
+                      name="accountsreceivablesid" />
+                    <outputColumn
+                      refId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output].Columns[transactionamount]"
+                      dataType="numeric"
+                      lineageId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output].Columns[transactionamount]"
+                      name="transactionamount"
+                      precision="38"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Get Bill  Adjustments FYTD.Paths[ADO NET Source Output]"
+              endId="Package\Get Bill  Adjustments FYTD\Move Records to Azure.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Azure FactBillingSummary"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D832C6F8-CCD6-4140-AD1B-11107981CA2C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Azure FactBillingSummary"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26D5014D-0E2A-4F02-9ADD-AB0E591B9A06}"
+          SQLTask:SqlStatementSource="EXEC biobis.LoadFactBillingSummary;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Azure STGBillings"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5AF0D634-CCF5-45C7-A5F3-E702EA897878}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Azure STGBillings"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26D5014D-0E2A-4F02-9ADD-AB0E591B9A06}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="&#xA;WITH getbillings AS &#xA;(&#x9;SELECT  &#xA;&#x9;&#x9;a.billnumber ,&#xA;&#x9;&#x9;originalbillamount, &#xA;&#x9;&#x9;bill_class_code, &#xA;&#x9;&#x9;sta3n,&#xA;&#x9;&#x9;ROW_NUMBER() OVER (PARTITION BY a.AccountsReceivableSID ORDER BY VISTAEDITDATE DESC) RNK,&#xA;&#x9;&#x9;ARCategoryDimSID,&#xA;&#x9;&#x9;CASE WHEN ISNULL(originalbillamount,0) &lt; 51 THEN 1&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;--'&lt;= $51'&#xA;&#x9;&#x9;&#x9; WHEN originalbillamount &gt;= 51 and originalbillamount &lt; 250   THEN 2    --'&gt; $51 and &lt; $250'&#xA;             WHEN originalbillamount &gt;= 250 and originalbillamount &lt; 1500 THEN 3    --'&gt;= $250 and &lt; $1500'&#xA;             WHEN originalbillamount &gt;= 1500                           THEN 4       --'&gt;= $1500'&#xA;        END RANGE_ID,&#xA;        CASE WHEN isnull(fmsaccountingfund, 'X') = '528711' THEN 3&#xA;&#x9;         WHEN isnull(fmsaccountingfund, 'X')&lt;&gt; '528711' THEN &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;CASE WHEN bill_class_code in ('1','2') THEN 1&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; WHEN bill_class_code in ('3','4') THEN 2&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9; ELSE -99 &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;END  &#xA;&#x9;&#x9;END bill_class_dim_sid, &#xA;&#x9;&#x9;CASE WHEN RevenueSourceCode IN ('8014', '8017', '8018', '8028', '8029', '8030' ,'8035')&#xA;&#x9;&#x9;&#x9;&#x9;THEN RevenueSourceCode &#xA;&#x9;&#x9;&#x9; ELSE  '-99' &#xA;&#x9;&#x9;END RevenueSourceCode, &#xA;&#x9;&#x9;authorization_date,&#xA;&#x9;&#x9;arcategory, &#xA;&#x9;&#x9;MonthDimSID month_id&#xA;&#x9;FROM  &#xA;&#x9;&#x9;biobis.fact_ar_track_change_ALLhist a&#xA;&#x9;&#x9;JOIN biobis.DimARCategory&#xA;&#x9;&#x9;&#x9;ON arcategory = ARCategoryDescription&#xA;&#x9;&#x9;JOIN biobis.BioBisETLLog &#xA;&#x9;&#x9;&#x9;ON CONVERT(DATE, billprepareddatetime) BETWEEN MonthBeginDate AND MonthEndDate&#xA;&#x9;WHERE opcode IN ('U', 'I')&#xA;&#x9;AND ARCategoryType in ('THIRD PARTY', 'MISC', 'OTHER')&#xA;&#x9;AND begin_date &lt;= DATEADD(DAY,1,MonthEndDate)&#xA; )&#xA;&#xA; INSERT INTO biobisstg.STGBillings&#xA; (&#xA;&#x9;MonthDimSID&#xA;    ,STA3N&#xA;    ,RangeID&#xA;    ,BillClassDimSID&#xA;    ,ARCategoryDimSID&#xA;    ,RevenueSourceCode&#xA;    ,NumBills&#xA;    ,AmtBills&#xA; )&#xA; SELECT &#xA;&#x9;month_id MONTH_DIM_SID ,&#xA;&#x9;STA3N, &#xA;&#x9;RANGE_ID, &#xA;&#x9;bill_class_dim_sid, &#xA;&#x9;ARCATEGORYdimsid,&#xA;&#x9;revenuesourcecode, &#xA;&#x9;COUNT(BILLNUMBER) NUM_BILLS, &#xA;&#x9;SUM(originalbillamount) AMT_BILLS&#xA; FROM &#xA;&#x9;GETBILLINGS B --, DIM_MONTH M&#xA; WHERE &#xA;&#x9;RNK = 1&#xA;&#x9;AND charindex('-',substring(BillNumber,5,16)) = 0 &#xA;&#x9;AND bill_class_code IS NOT NULL&#xA; GROUP BY &#xA;&#x9;month_id,&#xA;&#x9;bill_class_dim_sid, &#xA;&#x9;STA3N,&#xA;&#x9;ARCATEGORYdimsid, &#xA;&#x9;RANGE_ID, &#xA;&#x9;revenuesourcecode&#xA;ORDER BY &#xA;&#x9;STA3N, &#xA;&#x9;bill_class_dim_sid;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Azure STGBillingsFYTD"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1F2E9590-433B-45B7-B298-2E73201E6175}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Azure STGBillingsFYTD"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26D5014D-0E2A-4F02-9ADD-AB0E591B9A06}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="&#xA;--Get 3rd Party and Misc Billings&#xA;WITH getbillings AS &#xA;(&#xA;&#x9;SELECT &#xA;&#x9;&#x9;MonthDimSID month_dim_sid, &#xA;&#x9;&#x9;a.billnumber,&#xA;&#x9;&#x9;originalbillamount,&#xA;&#x9;&#x9;bill_class_code, &#xA;&#x9;&#x9;sta3n,&#xA;&#x9;&#x9;ROW_NUMBER() OVER (PARTITION BY a.AccountsReceivableSID ORDER BY VISTAEDITDATE DESC) RNK,&#xA;&#x9;&#x9;ARCategoryDimSID,&#xA;&#x9;&#x9;CASE WHEN ISNULL(originalbillamount,0) &lt; 51 THEN 1&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;--'&lt;= $51'&#xA;             WHEN originalbillamount &gt;= 51 AND originalbillamount &lt; 250   THEN 2&#x9;--'&gt; $51 and &lt; $250'&#xA;             WHEN originalbillamount &gt;= 250 AND originalbillamount &lt; 1500 THEN 3&#x9;--'&gt;= $250 and &lt; $1500'&#xA;             WHEN originalbillamount &gt;= 1500 THEN 4&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;--'&gt;= $1500'&#xA;        END RANGE_ID,&#xA;        CASE WHEN ISNULL(fmsaccountingfund, 'X') = '528711' then 3&#xA;&#x9;&#x9;&#x9; WHEN ISNULL(fmsaccountingfund, 'X')&lt;&gt; '528711' then &#xA;&#x9;&#x9;&#x9;&#x9;CASE WHEN bill_class_code IN ('1','2') then 1&#xA;&#x9;&#x9;&#x9;&#x9;&#x9; WHEN bill_class_code IN ('3','4') then 2&#xA;&#x9;&#x9;&#x9;&#x9;ELSE -99 &#xA;&#x9;&#x9;&#x9; END  &#xA;        END bill_class_dim_sid,&#xA;&#x9;&#x9;RevenueSourceCode, &#xA;&#x9;&#x9;authorization_date,&#xA;&#x9;&#x9;arcategory&#xA;&#x9;FROM  &#xA;&#x9;&#x9;biobis.fact_ar_track_change_ALLhist a&#xA;&#x9;&#x9;JOIN biobis.DimARCategory&#xA;&#x9;&#x9;&#x9;ON arcategory = ARCategoryDescription&#xA;&#x9;&#x9;JOIN biobis.BioBisETLLog --DIM_DATE&#xA;&#x9;&#x9;&#x9;ON  CONVERT(DATE, BILLPREPAREDDATETIME) between FiscalYearBeginDate and MonthEndDate&#xA;&#x9;WHERE &#xA;&#x9;&#x9;OpCode IN ('U', 'I')&#xA;&#x9;&#x9;AND ARCategoryType IN ('THIRD PARTY', 'MISC', 'OTHER')&#xA;--&#x9;&#x9;AND FiscalYear = 2020&#xA;&#x9;&#x9;AND begin_date &lt;= DATEADD(DAY,1,MonthEndDate)&#xA;&#x9;&#x9;AND CONVERT(DATE, BILLPREPAREDDATETIME) &lt; DATEADD(DAY,1,MonthEndDate)&#xA; )&#xA;&#xA;INSERT  INTO biobisstg.STGBillingsFYTD&#xA;(&#xA;&#x9;MonthDimSID&#xA;    ,STA3N&#xA;    ,RangeID&#xA;    ,BillClassDimSID&#xA;    ,ARCategoryDimSID&#xA;    ,Revenuesourcecode&#xA;    ,NumBillsFYTD&#xA;    ,AmtBillsFYTD&#xA;)&#xA;SELECT &#xA;&#x9;MONTH_DIM_SID,&#xA;&#x9;STA3N, &#xA;&#x9;RANGE_ID, &#xA;&#x9;bill_class_dim_sid, &#xA;&#x9;ARCategoryDimSID, &#xA;&#x9;revenuesourcecode,&#xA;&#x9;COUNT(BILLNUMBER) NUM_BILLS_FYTD, &#xA;&#x9;SUM(originalbillamount) AMT_BILLS_FYTD&#xA;FROM &#xA;&#x9;GETBILLINGS B&#xA;WHERE &#xA;&#x9;RNK = 1&#xA;&#x9;AND CHARINDEX('-',SUBSTRING(BillNumber,5,16)) = 0 &#xA;&#x9;AND bill_class_code IS NOT NULL&#xA;GROUP BY &#xA;&#x9;MONTH_DIM_SID,&#xA;&#x9;bill_class_dim_sid, &#xA;&#x9;STA3N,&#xA;&#x9;ARCategoryDimSID, &#xA;&#x9;RANGE_ID, &#xA;&#x9;revenuesourcecode&#xA;ORDER BY STA3N, bill_class_dim_sid;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load STGBillings1P"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{246F04BE-5BDE-45D3-B390-F36FA9BDFD39}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load STGBillings1P"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26D5014D-0E2A-4F02-9ADD-AB0E591B9A06}"
+          SQLTask:SqlStatementSource="WITH GETREC_FACT AS&#xA;(&#xA; SELECT  &#xA;&#x9;e.MonthDimSID&#xA;&#x9;,a.sta3n&#xA;&#x9;,billnumber&#xA;&#x9;,transactionamount --transactionnumber, &#xA;&#x9;,artransactiontype&#xA;&#x9;,originalbillamount &#xA;&#x9;,totalprincipalpaid&#xA;&#x9;,row_number() over (PARTITION BY a.AccountsReceivableSID ORDER BY VISTAEDITDATE DESC) RNK&#xA;&#x9;,arcategory&#xA;&#x9;,ISNULL(bill_class_code,-99) bill_class_code&#xA;&#x9;,FMSAccountingFund&#xA;&#x9;,CASE WHEN ISNULL(transactionamount,0) &lt; 51                       THEN 1       --'&lt;= $51'&#xA;          WHEN transactionamount &gt;= 51 and transactionamount &lt; 250   THEN 2       --'&gt; $51 and &lt; $250'&#xA;         WHEN transactionamount &gt;= 250 and transactionamount &lt; 1500 THEN 3       --'&gt;= $250 and &lt; $1500'&#xA;         WHEN transactionamount &gt;= 1500                           THEN 4       --'&gt;= $1500'&#xA;    END RANGE_ID&#xA;&#x9;,revenuesourcecode&#xA; FROM &#xA;&#x9;biobis.fact_ar_track_change_ALLhist a&#xA;&#x9;JOIN biobisstg.stgbillingadjustments b&#xA;&#x9;&#x9;ON a.accountsreceivablesid = b.accountsreceivablesid&#xA;&#x9;JOIN biobis.dimarcategory c&#xA;&#x9;&#x9;ON a.arcategory = c.arcategorydescription&#xA;&#x9;&#x9;   AND c.arcategorytype = 'First Party'&#xA;&#x9;JOIN biobis.BioBisETLLog e&#xA;&#x9;&#x9;ON CONVERT(DATE, StatusDateTime) between e.MonthBeginDate and e.MonthEndDate &#xA;&#x9;&#x9;AND begin_date &lt;= DATEADD(DAY,1,e.monthenddate)&#x9;&#xA; WHERE &#xA;&#x9;curr_rec_ind &lt;&gt; 'D'&#xA;)&#xA; &#xA;--Dedupe&#xA;INSERT INTO biobisstg.STGBillings1P&#xA;(&#xA;&#x9;MonthDimSID&#xA;    ,sta3n&#xA;    ,RangeID&#xA;    ,BillClassDimSID&#xA;    ,ARCategoryDimSID&#xA;&#x9;,RevenueSourceCode&#xA;    ,NumBills&#xA;    ,AmtBills&#xA;    ,FundDimSID&#xA;)&#xA;SELECT&#x9;&#xA;&#x9;MonthDimSID&#xA;&#x9;,sta3n&#xA;&#x9;,RANGE_ID&#xA;&#x9;,Billclassdimsid&#xA;&#x9;,arcategorydimsid&#xA;&#x9;,RevenueSourceCode&#xA;&#x9;,count(distinct billnumber) num_bills &#xA;&#x9;,sum(transactionamount) amt_bills&#xA;&#x9;,funddimsid&#xA;FROM &#xA;&#x9;getrec_fact a&#xA;&#x9;JOIN biobis.dimarcategory c&#xA;&#x9;&#x9;ON a.arcategory = c.arcategorydescription&#xA;&#x9;JOIN biobis.dimfund f&#xA;&#x9;&#x9;ON a.fmsaccountingfund = f.fund&#xA;&#x9;JOIN biobis.dimbillclass b&#xA;&#x9;&#x9;ON a.bill_class_code = b.billclassdimsid&#xA;WHERE &#xA;&#x9;rnk = 1&#xA;group by  &#xA;&#x9;billclassdimsid&#xA;&#x9;,arcategorydimsid&#xA;&#x9;,sta3n&#xA;&#x9;,RANGE_ID&#xA;&#x9;,funddimsid&#xA;&#x9;,revenuesourcecode&#xA;&#x9;,MonthDimSID&#xA;ORDER BY &#xA;&#x9;sta3n;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load STGBillings1PFYTD"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{dbd03a12-5234-4266-ade8-79a58fa7e43a}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load STGBillings1PFYTD"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26D5014D-0E2A-4F02-9ADD-AB0E591B9A06}"
+          SQLTask:SqlStatementSource="WITH GETREC_FACT_FYTD AS&#xA;(&#xA; SELECT  &#xA;&#x9;e.MonthDimSID&#xA;&#x9;,a.sta3n&#xA;&#x9;,billnumber&#xA;&#x9;,transactionamount --transactionnumber, &#xA;&#x9;,artransactiontype&#xA;&#x9;,originalbillamount &#xA;&#x9;,totalprincipalpaid&#xA;&#x9;,row_number() over (PARTITION BY a.AccountsReceivableSID ORDER BY VISTAEDITDATE DESC) RNK&#xA;&#x9;,arcategory&#xA;&#x9;,ISNULL(bill_class_code,-99) bill_class_code&#xA;&#x9;,FMSAccountingFund&#xA;&#x9;,CASE WHEN ISNULL(transactionamount,0) &lt; 51                       THEN 1       --'&lt;= $51'&#xA;          WHEN transactionamount &gt;= 51 and transactionamount &lt; 250   THEN 2       --'&gt; $51 and &lt; $250'&#xA;          WHEN transactionamount &gt;= 250 and transactionamount &lt; 1500 THEN 3       --'&gt;= $250 and &lt; $1500'&#xA;          WHEN transactionamount &gt;= 1500                           THEN 4       --'&gt;= $1500'&#xA;    END RANGE_ID&#xA;&#x9;,revenuesourcecode&#xA; FROM &#xA;&#x9;biobis.fact_ar_track_change_ALLhist a&#xA;&#x9;JOIN biobisstg.stgbillingadjustmentsFYTD b&#xA;&#x9;&#x9;ON a.accountsreceivablesid = b.accountsreceivablesid&#xA;&#x9;JOIN biobis.dimarcategory c&#xA;&#x9;&#x9;ON a.arcategory = c.arcategorydescription&#xA;&#x9;&#x9;&#x9;AND c.arcategorytype = 'First Party'&#xA;&#x9;JOIN biobis.BioBisETLLog e&#xA;&#x9;&#x9;ON CONVERT(DATE, StatusDateTime) between e.FiscalYearBeginDate and e.MonthEndDate &#xA;&#x9;&#x9;&#x9;AND begin_date &lt;= DATEADD(DAY,1,e.monthenddate) &#xA; WHERE &#xA;&#x9;curr_rec_ind &lt;&gt; 'D'&#xA;)&#xA; &#xA;--Dedupe&#xA;INSERT INTO biobisstg.STGBillings1PFYTD&#xA;(&#xA; MonthDimSID&#xA;    ,sta3n&#xA;    ,RangeID&#xA;    ,BillClassDimSID&#xA;    ,ARCategoryDimSID&#xA;&#x9;,RevenueSourceCode&#xA;    ,NumBillsFYTD&#xA;    ,AmtBillsFYTD&#xA;    ,FundDimSID&#xA;)&#xA;SELECT &#xA;&#x9;MonthDimSID&#xA;&#x9;,sta3n&#xA;&#x9;,RANGE_ID&#xA;&#x9;,Billclassdimsid&#xA;&#x9;,arcategorydimsid&#xA;&#x9;,RevenueSourceCode&#xA;&#x9;,count(distinct billnumber) numbillsFYTD &#xA;&#x9;,sum(transactionamount) amtbillsFYTD&#xA;&#x9;,funddimsid&#xA;FROM &#xA;&#x9;getrec_fact_fytd a&#xA;&#x9;JOIN biobis.dimarcategory c&#xA;&#x9;&#x9;ON a.arcategory = c.arcategorydescription&#xA;&#x9;JOIN biobis.dimfund f&#xA;&#x9;&#x9;ON a.fmsaccountingfund = f.fund&#xA;&#x9;JOIN biobis.dimbillclass b&#xA;&#x9;ON a.bill_class_code = b.billclassdimsid&#xA;WHERE &#xA;&#x9;rnk = 1&#xA;group by  &#xA;&#x9;billclassdimsid&#xA;&#x9;,arcategorydimsid&#xA;&#x9;,sta3n&#xA;&#x9;,RANGE_ID&#xA;&#x9;,funddimsid&#xA;&#x9;,revenuesourcecode&#xA;&#x9;,MonthDimSID&#xA;ORDER BY &#xA;&#x9;sta3n;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Azure Billing Summary Table STGBillSummary"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3C39252B-785F-4DE2-A5DB-2A81DDE73764}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Azure Billing Summary Table STGBillSummary"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26D5014D-0E2A-4F02-9ADD-AB0E591B9A06}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE biobisstg.STGBillSummary;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Azure STGBillings"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CA2D2DC5-9AE6-4CB1-8DA5-86682FFEF64B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Azure STGBillings"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26D5014D-0E2A-4F02-9ADD-AB0E591B9A06}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE biobisstg.STGBillings;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Azure STGBillingsFYTD"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{EAD93283-9E01-48BC-8A95-1D645DA1B36B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Azure STGBillingsFYTD"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26D5014D-0E2A-4F02-9ADD-AB0E591B9A06}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE biobisstg.STGBillingsFYTD;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Azure table STGBillingAdjustments"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{feaef9f7-d829-4f6f-b9dc-30cb3703e7cf}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Azure table STGBillingAdjustments"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26D5014D-0E2A-4F02-9ADD-AB0E591B9A06}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE biobisstg.STGBillingAdjustments" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Azure table STGBillingAdjustmentsFYTD"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{90bcc5ab-225b-4ead-ac2f-4556bfd6c3ce}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Azure table STGBillingAdjustmentsFYTD"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26D5014D-0E2A-4F02-9ADD-AB0E591B9A06}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE biobisstg.STGBillingAdjustmentsFYTD" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Azure table STGBillings1P"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E6AA0BE4-B88B-421C-8049-B619EBCDF4CD}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Azure table STGBillings1P"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26D5014D-0E2A-4F02-9ADD-AB0E591B9A06}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE biobisstg.STGBillings1P;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Azure table STGBillings1PFYTD"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{826C19C3-09FA-4E61-8B4D-9FE4C67DFC6F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Azure table STGBillings1PFYTD"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{26D5014D-0E2A-4F02-9ADD-AB0E591B9A06}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE biobisstg.STGBillings1PFYTD;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{2D00A4B1-A931-409C-96FC-B941368A993F}"
+      DTS:From="Package\Truncate Azure STGBillingsFYTD"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load Azure STGBillingsFYTD" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{EF84ADC3-06D9-480B-8E9E-AF38C95B0B03}"
+      DTS:From="Package\Truncate Azure STGBillings"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load Azure STGBillings" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{A271EF74-280A-4DF4-8F59-12467A9F5499}"
+      DTS:From="Package\Truncate Azure table STGBillings1PFYTD"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Get Bill  Adjustments FYTD" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{B66BA959-759F-421E-BC93-8A00BCAC5765}"
+      DTS:From="Package\Get Bill  Adjustments FYTD"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\Load STGBillings1PFYTD" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{8ED9B344-5417-4122-B661-EAC371E4802E}"
+      DTS:From="Package\Load STGBillings1PFYTD"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 12"
+      DTS:To="Package\Combine and Load 1st Party into Azure STGBillSummary" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
+      DTS:CreationName=""
+      DTS:DTSID="{385E7AB0-573A-40FD-B9CF-F8E60735CE59}"
+      DTS:From="Package\Combine and Load into Azure STGBillSummary"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 13"
+      DTS:To="Package\Load Azure FactBillingSummary" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 14]"
+      DTS:CreationName=""
+      DTS:DTSID="{69D6B539-1EE4-4959-BA0B-741954518365}"
+      DTS:From="Package\Combine and Load 1st Party into Azure STGBillSummary"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 14"
+      DTS:To="Package\Load Azure FactBillingSummary" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{E98DD8DF-1944-4806-8231-09119EEBD956}"
+      DTS:From="Package\Load Azure STGBillings"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Combine and Load into Azure STGBillSummary" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{024FDEF0-A5FA-46B5-B4F8-D136B1A38763}"
+      DTS:From="Package\Load Azure STGBillingsFYTD"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Combine and Load into Azure STGBillSummary" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{97A8044B-A7D7-46C3-B5C0-1B240D901C0C}"
+      DTS:From="Package\Truncate Azure Billing Summary Table STGBillSummary"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Truncate Azure STGBillings" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{ED7C235D-ECA2-4AE6-90E5-506FD1BCE048}"
+      DTS:From="Package\Truncate Azure table STGBillings1P"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Get Bill  Adjustments" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{4EF579A9-69EB-4F60-88AC-DBC06065D1E3}"
+      DTS:From="Package\Get Bill  Adjustments"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Load STGBillings1P" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{161F9579-1193-4A3F-804A-B918EBB2E18C}"
+      DTS:From="Package\Truncate Azure table STGBillingAdjustments"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Truncate Azure table STGBillings1P" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{B52B5401-A4C6-448C-B076-6D82316E36CF}"
+      DTS:From="Package\Load STGBillings1P"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Combine and Load 1st Party into Azure STGBillSummary" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{9F8CB8BB-E2D9-492E-8E04-378DC7CEB7EA}"
+      DTS:From="Package\Truncate Azure table STGBillingAdjustmentsFYTD"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Truncate Azure table STGBillings1PFYTD" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="358,42"
+          Id="Package\Combine and Load 1st Party into Azure STGBillSummary"
+          TopLeft="466,373" />
+        <NodeLayout
+          Size="312,42"
+          Id="Package\Combine and Load into Azure STGBillSummary"
+          TopLeft="66,287" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Get Bill  Adjustments"
+          TopLeft="430,188" />
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Get Bill  Adjustments FYTD"
+          TopLeft="661,188" />
+        <NodeLayout
+          Size="236,42"
+          Id="Package\Load Azure FactBillingSummary"
+          TopLeft="354,453" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Load Azure STGBillings"
+          TopLeft="37,190" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Load Azure STGBillingsFYTD"
+          TopLeft="216,192" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Load STGBillings1P"
+          TopLeft="432,280" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Load STGBillings1PFYTD"
+          TopLeft="667,280" />
+        <NodeLayout
+          Size="187,61"
+          Id="Package\Truncate Azure Billing Summary Table STGBillSummary"
+          TopLeft="19,6" />
+        <NodeLayout
+          Size="137,63"
+          Id="Package\Truncate Azure STGBillings"
+          TopLeft="46,99" />
+        <NodeLayout
+          Size="166,55"
+          Id="Package\Truncate Azure STGBillingsFYTD"
+          TopLeft="217,101" />
+        <NodeLayout
+          Size="195,53"
+          Id="Package\Truncate Azure table STGBillingAdjustments"
+          TopLeft="425,16" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\Truncate Azure table STGBillingAdjustmentsFYTD"
+          TopLeft="645,21" />
+        <NodeLayout
+          Size="175,52"
+          Id="Package\Truncate Azure table STGBillings1P"
+          TopLeft="435,103" />
+        <NodeLayout
+          Size="181,49"
+          Id="Package\Truncate Azure table STGBillings1PFYTD"
+          TopLeft="677,107" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="300.25,156">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="116.5,162">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="767.5,156">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32"
+              Start="0,0"
+              End="0,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="768.75,230">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="770,322">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-66.6666666666667,51"
+              Start="0,0"
+              End="-66.6666666666667,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.4638487208009" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.4638487208009"
+                    Point2="0,30.4638487208009"
+                    Point3="-4,30.4638487208009" />
+                  <mssgle:LineSegment
+                    End="-62.6666666666667,30.4638487208009" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-62.6666666666667,30.4638487208009"
+                    Point2="-66.6666666666667,30.4638487208009"
+                    Point3="-66.6666666666667,34.4638487208009" />
+                  <mssgle:LineSegment
+                    End="-66.6666666666667,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="222,329">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="212,124"
+              Start="0,0"
+              End="212,116.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,69.8989898989899" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,69.8989898989899"
+                    Point2="0,73.8989898989899"
+                    Point3="4,73.8989898989899" />
+                  <mssgle:LineSegment
+                    End="208,73.8989898989899" />
+                  <mssgle:CubicBezierSegment
+                    Point1="208,73.8989898989899"
+                    Point2="212,73.8989898989899"
+                    Point3="212,77.8989898989899" />
+                  <mssgle:LineSegment
+                    End="212,116.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="645,415">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-135,38"
+              Start="0,0"
+              End="-135,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.6464646464646" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.6464646464646"
+                    Point2="0,22.6464646464646"
+                    Point3="-4,22.6464646464646" />
+                  <mssgle:LineSegment
+                    End="-131,22.6464646464646" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-131,22.6464646464646"
+                    Point2="-135,22.6464646464646"
+                    Point3="-135,26.6464646464646" />
+                  <mssgle:LineSegment
+                    End="-135,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="118.5,232">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="52.8333333333333,55"
+              Start="0,0"
+              End="52.8333333333333,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.8316326530612" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.8316326530612"
+                    Point2="0,32.8316326530612"
+                    Point3="4,32.8316326530612" />
+                  <mssgle:LineSegment
+                    End="48.8333333333333,32.8316326530612" />
+                  <mssgle:CubicBezierSegment
+                    Point1="48.8333333333333,32.8316326530612"
+                    Point2="52.8333333333333,32.8316326530612"
+                    Point3="52.8333333333333,36.8316326530612" />
+                  <mssgle:LineSegment
+                    End="52.8333333333333,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="300.5,234">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-27.8333333333334,53"
+              Start="0,0"
+              End="-27.8333333333334,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.6377551020408" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.6377551020408"
+                    Point2="0,31.6377551020408"
+                    Point3="-4,31.6377551020408" />
+                  <mssgle:LineSegment
+                    End="-23.8333333333334,31.6377551020408" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-23.8333333333334,31.6377551020408"
+                    Point2="-27.8333333333334,31.6377551020408"
+                    Point3="-27.8333333333334,35.6377551020408" />
+                  <mssgle:LineSegment
+                    End="-27.8333333333334,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="113.5,67">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32"
+              Start="0,0"
+              End="0,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="521.5,155">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="520.75,230">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="522.5,69">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="521,322">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="65.6666666666666,51"
+              Start="0,0"
+              End="65.6666666666666,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.4638487208009" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.4638487208009"
+                    Point2="0,30.4638487208009"
+                    Point3="4,30.4638487208009" />
+                  <mssgle:LineSegment
+                    End="61.6666666666666,30.4638487208009" />
+                  <mssgle:CubicBezierSegment
+                    Point1="61.6666666666666,30.4638487208009"
+                    Point2="65.6666666666666,30.4638487208009"
+                    Point3="65.6666666666666,34.4638487208009" />
+                  <mssgle:LineSegment
+                    End="65.6666666666666,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="768.75,63">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Get Bill  Adjustments">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="294,42"
+          Id="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records"
+          TopLeft="202,63" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Get Bill  Adjustments\Move Records to Azure"
+          TopLeft="257,175" />
+        <EdgeLayout
+          Id="Package\Get Bill  Adjustments.Paths[ADO NET Source Output]"
+          TopLeft="351.5,105">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70"
+              Start="0,0"
+              End="0,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Bill  Adjustments\Move Records to Azure">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Bill  Adjustments\Read 1P Adjustments, ReEstablish Records">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Get Bill  Adjustments FYTD">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="326,42"
+          Id="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records"
+          TopLeft="202,63" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Get Bill  Adjustments FYTD\Move Records to Azure"
+          TopLeft="274,187" />
+        <EdgeLayout
+          Id="Package\Get Bill  Adjustments FYTD.Paths[ADO NET Source Output]"
+          TopLeft="368,105">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,82"
+              Start="0,0"
+              End="0,74.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,74.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Bill  Adjustments FYTD\Move Records to Azure">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Get Bill  Adjustments FYTD\Read 1P FYTD Adjustments, ReEstablish Records">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

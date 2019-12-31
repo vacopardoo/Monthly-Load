@@ -1,0 +1,832 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/26/2019 4:15:21 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="VACOLTOWENSAR"
+  DTS:CreatorName="DVA\vacoowensr3"
+  DTS:DTSID="{603B9561-4ED2-4434-A5FB-E5A7FE339D81}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Load Denials"
+  DTS:PackageType="5"
+  DTS:VersionBuild="43"
+  DTS:VersionGUID="{D26CB7BF-A4BC-4339-A9EF-F958950E39C0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{A6643E70-1078-4BA1-B2BA-3FB7C08AAFC2}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Q:\ETL\MonthlyDataFiles\EDD_First_Run_Denial_Yield_2019_10_Final.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS]]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{C60D43FC-4F00-41A9-BE54-382D8347C3C4}"
+      DTS:ObjectName="oracle connection 32bit.VACOOWENSR3[BIO_BIS]">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=vacopardoo[BIO_BIS];Dsn=oracle connection 32bit;">
+          <DTS:Password
+            DTS:Name="pwd"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACJE5bk+9oEGnoPTuH2tbnAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAI0194gNTnv1VCPkSR+Z1RAAAAAASAAACgAAAAEAAAANizkVxMZj1l4Hz7nHW/8MIYAAAAlRDXAEkokw5OzqLbXwqAAzcU2Yvn9ivKFAAAAMBoO5kKbbBTybaF6J75PGI7bbX7</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS] 1]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{8E613A0B-E3E5-44BA-9977-DD7F93C947C6}"
+      DTS:ObjectName="oracle connection 32bit.VACOOWENSR3[BIO_BIS] 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=vacopardoo[BIO_BIS];Dsn=oracle connection 32bit;">
+          <DTS:Password
+            DTS:Name="pwd"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACJE5bk+9oEGnoPTuH2tbnAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADFcm6isYw0YqhUMoQZWqepAAAAAASAAACgAAAAEAAAAHTBa1RWJfz20AGM+9thDxoYAAAAK/ybulJ+maP402Ou8MoYjiWxygX84dxwFAAAAKpVEl+MLwTBsW48E+hJQa8m5mjY</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load Fact_Denials_new"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{22226553-37A2-4B9B-9EB9-61084D880B4D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Fact_Denials_new"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8E613A0B-E3E5-44BA-9977-DD7F93C947C6}"
+          SQLTask:IsStoredProc="True"
+          SQLTask:SqlStatementSource="CALL LOAD_DENIALS()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Stg_Denials2"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{8FE48A7C-1E28-4D6F-8859-9DE5FE37169A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Stg_Denials2"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Stg_Denials2\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load Stg_Denials2\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Stg_Denials2\Data Conversion.Inputs[Data Conversion Input].Columns[Reporting Month]"
+                      cachedDataType="date"
+                      cachedName="Reporting Month"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Reporting Month]" />
+                    <inputColumn
+                      refId="Package\Load Stg_Denials2\Data Conversion.Inputs[Data Conversion Input].Columns[Reporting Level]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Reporting Level"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Reporting Level]" />
+                    <inputColumn
+                      refId="Package\Load Stg_Denials2\Data Conversion.Inputs[Data Conversion Input].Columns[Reporting Entity]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Reporting Entity"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Reporting Entity]" />
+                    <inputColumn
+                      refId="Package\Load Stg_Denials2\Data Conversion.Inputs[Data Conversion Input].Columns[First Run Denial Yield]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="First Run Denial Yield"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[First Run Denial Yield]" />
+                    <inputColumn
+                      refId="Package\Load Stg_Denials2\Data Conversion.Inputs[Data Conversion Input].Columns[Insert Date]"
+                      cachedDataType="date"
+                      cachedName="Insert Date"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Insert Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Load Stg_Denials2\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Reporting Month]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Reporting Month]"
+                      name="Copy of Reporting Month"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Reporting Month]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Reporting Level]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Reporting Level]"
+                      name="Copy of Reporting Level"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Reporting Level]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Reporting Entity]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Reporting Entity]"
+                      name="Copy of Reporting Entity"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Reporting Entity]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of First Run Denial Yield]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of First Run Denial Yield]"
+                      name="Copy of First Run Denial Yield"
+                      precision="15"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[First Run Denial Yield]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Insert Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Insert Date]"
+                      name="Copy of Insert Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Insert Date]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Load Stg_Denials2\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Stg_Denials2\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">FirstRunDenialYield$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Stg_Denials2\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Reporting Month]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].ExternalColumns[Reporting Month]"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Reporting Month]"
+                      name="Reporting Month"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Reporting Level]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].ExternalColumns[Reporting Level]"
+                      length="255"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Reporting Level]"
+                      name="Reporting Level"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Reporting Entity]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].ExternalColumns[Reporting Entity]"
+                      length="255"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Reporting Entity]"
+                      name="Reporting Entity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[First Run Denial Yield]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].ExternalColumns[First Run Denial Yield]"
+                      length="255"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[First Run Denial Yield]"
+                      name="First Run Denial Yield"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Insert Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].ExternalColumns[Insert Date]"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Insert Date]"
+                      name="Insert Date"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].ExternalColumns[Reporting Month]"
+                      dataType="wstr"
+                      length="255"
+                      name="Reporting Month" />
+                    <externalMetadataColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].ExternalColumns[Reporting Level]"
+                      dataType="wstr"
+                      length="255"
+                      name="Reporting Level" />
+                    <externalMetadataColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].ExternalColumns[Reporting Entity]"
+                      dataType="wstr"
+                      length="255"
+                      name="Reporting Entity" />
+                    <externalMetadataColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].ExternalColumns[First Run Denial Yield]"
+                      dataType="wstr"
+                      length="255"
+                      name="First Run Denial Yield" />
+                    <externalMetadataColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].ExternalColumns[Insert Date]"
+                      dataType="wstr"
+                      length="255"
+                      name="Insert Date" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Error Output].Columns[Reporting Month]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Error Output].Columns[Reporting Month]"
+                      name="Reporting Month" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Error Output].Columns[Reporting Level]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Error Output].Columns[Reporting Level]"
+                      name="Reporting Level" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Error Output].Columns[Reporting Entity]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Error Output].Columns[Reporting Entity]"
+                      name="Reporting Entity" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Error Output].Columns[First Run Denial Yield]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Error Output].Columns[First Run Denial Yield]"
+                      name="First Run Denial Yield" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Error Output].Columns[Insert Date]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Error Output].Columns[Insert Date]"
+                      name="Insert Date" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Stg_Denials2\ODBC Destination"
+              componentClassID="Attunity.SSISODBCDst"
+              description="ODBC Destination"
+              name="ODBC Destination"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The method used for inserting data. Possible values are 'Batch' or 'Row by row'."
+                  expressionType="Notify"
+                  name="InsertMethod"
+                  typeConverter="InsertMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs"
+                  typeConverter="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The ODBC C data type for binding numeric data."
+                  expressionType="Notify"
+                  name="BindNumericAs"
+                  typeConverter="BindNumericAs">0</property>
+                <property
+                  dataType="System.String"
+                  description="Destination table"
+                  expressionType="Notify"
+                  name="TableName">"BIO_BIS"."STG_DENIALS2"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows inserted per batch."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of rows inserted under the same transaction."
+                  expressionType="Notify"
+                  name="TransactionSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines the chunk size allocation for LOB columns"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The code page to use when code page information is unavailable from the data source."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Stg_Denials2\ODBC Destination.Connections[ODBCConnection]"
+                  connectionManagerID="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS]]"
+                  connectionManagerRefId="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS]]"
+                  description="The ODBC runtime connection"
+                  name="ODBCConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ODBC Destination Input"
+                  truncationRowDisposition="FailComponent">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].Columns[Reporting Month]"
+                      cachedDataType="date"
+                      cachedName="Reporting Month"
+                      externalMetadataColumnId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REPORTING_MONTH]"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Reporting Month]" />
+                    <inputColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].Columns[Reporting Level]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Reporting Level"
+                      externalMetadataColumnId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REPORTING_LEVEL]"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Reporting Level]" />
+                    <inputColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].Columns[Reporting Entity]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Reporting Entity"
+                      externalMetadataColumnId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REPORTING_ENTITY]"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Reporting Entity]" />
+                    <inputColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].Columns[Insert Date]"
+                      cachedDataType="date"
+                      cachedName="Insert Date"
+                      externalMetadataColumnId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[INSERT_DATE]"
+                      lineageId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output].Columns[Insert Date]" />
+                    <inputColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].Columns[Copy of First Run Denial Yield]"
+                      cachedDataType="numeric"
+                      cachedName="Copy of First Run Denial Yield"
+                      cachedPrecision="15"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[FIRST_RUN_DENIAL_YIELD]"
+                      lineageId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of First Run Denial Yield]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REPORTING_MONTH]"
+                      dataType="dbTimeStamp"
+                      name="REPORTING_MONTH" />
+                    <externalMetadataColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REPORTING_LEVEL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="REPORTING_LEVEL" />
+                    <externalMetadataColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REPORTING_ENTITY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="REPORTING_ENTITY" />
+                    <externalMetadataColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[FIRST_RUN_DENIAL_YIELD]"
+                      dataType="numeric"
+                      name="FIRST_RUN_DENIAL_YIELD"
+                      precision="10"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[INSERT_DATE]"
+                      dataType="dbTimeStamp"
+                      name="INSERT_DATE" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Stg_Denials2\ODBC Destination.Outputs[ODBC Destination Error Output]"
+                  isErrorOut="true"
+                  name="ODBC Destination Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[REPORTING_MONTH]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REPORTING_MONTH]"
+                      lineageId="Package\Load Stg_Denials2\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[REPORTING_MONTH]"
+                      name="REPORTING_MONTH" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[REPORTING_LEVEL]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REPORTING_LEVEL]"
+                      length="15"
+                      lineageId="Package\Load Stg_Denials2\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[REPORTING_LEVEL]"
+                      name="REPORTING_LEVEL" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[REPORTING_ENTITY]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REPORTING_ENTITY]"
+                      length="15"
+                      lineageId="Package\Load Stg_Denials2\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[REPORTING_ENTITY]"
+                      name="REPORTING_ENTITY" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[FIRST_RUN_DENIAL_YIELD]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[FIRST_RUN_DENIAL_YIELD]"
+                      lineageId="Package\Load Stg_Denials2\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[FIRST_RUN_DENIAL_YIELD]"
+                      name="FIRST_RUN_DENIAL_YIELD"
+                      precision="10"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[INSERT_DATE]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[INSERT_DATE]"
+                      lineageId="Package\Load Stg_Denials2\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[INSERT_DATE]"
+                      name="INSERT_DATE" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Stg_Denials2\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Stg_Denials2\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Stg_Denials2\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Stg_Denials2.Paths[Data Conversion Output]"
+              endId="Package\Load Stg_Denials2\ODBC Destination.Inputs[ODBC Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Load Stg_Denials2\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Load Stg_Denials2.Paths[Excel Source Output]"
+              endId="Package\Load Stg_Denials2\Data Conversion.Inputs[Data Conversion Input]"
+              name="Excel Source Output"
+              startId="Package\Load Stg_Denials2\Excel Source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F5157985-879F-467E-BB75-FF794BB1F96C}"
+      DTS:From="Package\Load Stg_Denials2"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load Fact_Denials_new" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Load Fact_Denials_new"
+          TopLeft="228,232" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Load Stg_Denials2"
+          TopLeft="238,126" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="323,168">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,64"
+              Start="0,0"
+              End="0,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load Stg_Denials2">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Load Stg_Denials2\ODBC Destination"
+          TopLeft="803,348" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Load Stg_Denials2\Data Conversion"
+          TopLeft="398,370" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Load Stg_Denials2\Excel Source"
+          TopLeft="136,372" />
+        <EdgeLayout
+          Id="Package\Load Stg_Denials2.Paths[Excel Source Output]"
+          TopLeft="277,392">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="121,0"
+              Start="0,0"
+              End="113.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="113.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Stg_Denials2.Paths[Data Conversion Output]"
+          TopLeft="556,391">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="247,-22"
+              Start="0,0"
+              End="239.5,-22">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="119.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="119.5,0"
+                    Point2="123.5,0"
+                    Point3="123.5,-4" />
+                  <mssgle:LineSegment
+                    End="123.5,-18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="123.5,-18"
+                    Point2="123.5,-22"
+                    Point3="127.5,-22" />
+                  <mssgle:LineSegment
+                    End="239.5,-22" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Stg_Denials2\ODBC Destination">
+    <Properties>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Stg_Denials2\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

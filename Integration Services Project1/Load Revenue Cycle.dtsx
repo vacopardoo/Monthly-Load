@@ -1,0 +1,1824 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/24/2019 11:17:31 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="VACOLTOWENSAR"
+  DTS:CreatorName="DVA\vacoowensr3"
+  DTS:DTSID="{346C6AFA-82C1-4096-AE1E-B9807C46503C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1300.371"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Load Revenue Cycle"
+  DTS:PackageType="5"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{E26DA356-C048-45B6-8088-7E60D6EE5968}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[oracle connection 32bit.vacoowensr3]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{65BF9AF5-6E3E-42CF-9141-5A54A0E15EC5}"
+      DTS:ObjectName="oracle connection 32bit.vacoowensr3">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=vacoowensr3;Dsn=oracle connection 32bit;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS]]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{272D833E-DD97-4C5B-A5AD-F68974627B18}"
+      DTS:ObjectName="oracle connection 32bit.VACOOWENSR3[BIO_BIS]">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=VACOOWENSR3[BIO_BIS];Dsn=oracle connection 32bit;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS] 1]"
+      DTS:CreationName="ADO.NET:System.Data.Odbc.OdbcConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{63EF1EEE-4C91-4747-AE1F-D2603376D88D}"
+      DTS:ObjectName="oracle connection 32bit.VACOOWENSR3[BIO_BIS] 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=VACOOWENSR3[BIO_BIS];Dsn=oracle connection 32bit;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{58197694-77B0-412B-A57A-8925369599F4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{63EF1EEE-4C91-4747-AE1F-D2603376D88D}"
+          SQLTask:SqlStatementSource="Call load_fact_revenue_cycle()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\load stg_revenue_cycle from cpac_stg"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5F32E4A9-8B29-4169-A851-21931AB49C47}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load stg_revenue_cycle from cpac_stg"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination"
+              componentClassID="Attunity.SSISODBCDst"
+              description="ODBC Destination"
+              name="ODBC Destination"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The method used for inserting data. Possible values are 'Batch' or 'Row by row'."
+                  expressionType="Notify"
+                  name="InsertMethod"
+                  typeConverter="InsertMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs"
+                  typeConverter="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The ODBC C data type for binding numeric data."
+                  expressionType="Notify"
+                  name="BindNumericAs"
+                  typeConverter="BindNumericAs">0</property>
+                <property
+                  dataType="System.String"
+                  description="Destination table"
+                  expressionType="Notify"
+                  name="TableName">"BIO_BIS"."STG_REVENUE_CYCLE"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows inserted per batch."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of rows inserted under the same transaction."
+                  expressionType="Notify"
+                  name="TransactionSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines the chunk size allocation for LOB columns"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The code page to use when code page information is unavailable from the data source."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Connections[ODBCConnection]"
+                  connectionManagerID="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS]]"
+                  connectionManagerRefId="Package.ConnectionManagers[oracle connection 32bit.VACOOWENSR3[BIO_BIS]]"
+                  description="The ODBC runtime connection"
+                  name="ODBCConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ODBC Destination Input"
+                  truncationRowDisposition="FailComponent">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[ACCT_MONTH_ID]"
+                      cachedDataType="r8"
+                      cachedName="ACCT_MONTH_ID"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[MONTH_DIM_SID]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[ACCT_MONTH_ID]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[FKFACILITYNUM]"
+                      cachedDataType="r8"
+                      cachedName="FKFACILITYNUM"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[STATION_ID]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FKFACILITYNUM]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[NUMCOMPLETEREGISTRATIONSVET]"
+                      cachedDataType="r8"
+                      cachedName="NUMCOMPLETEREGISTRATIONSVET"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_VETS_REGISTRATION_CMPLT]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMCOMPLETEREGISTRATIONSVET]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[NUMVETS]"
+                      cachedDataType="r8"
+                      cachedName="NUMVETS"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTAL_NUM_VETS]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMVETS]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[NUMPATIENTSEMPLOYEDWITHNOEMP]"
+                      cachedDataType="r8"
+                      cachedName="NUMPATIENTSEMPLOYEDWITHNOEMP"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_EMPYD_WO_EMPLYR]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMPATIENTSEMPLOYEDWITHNOEMP]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[TOTALNUMPATIENTSTREATED]"
+                      cachedDataType="r8"
+                      cachedName="TOTALNUMPATIENTSTREATED"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTAL_NUM_PATIENTS_TREATED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[TOTALNUMPATIENTSTREATED]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[PATIENTS_COVERED_BILLABLE]"
+                      cachedDataType="r8"
+                      cachedName="PATIENTS_COVERED_BILLABLE"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_COVERED_BILLABLE]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_BILLABLE]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[TOTAL_PATIENTS_REGISTERED]"
+                      cachedDataType="r8"
+                      cachedName="TOTAL_PATIENTS_REGISTERED"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTAL_NUM_PATIENT_REG]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[TOTAL_PATIENTS_REGISTERED]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[PATIENTS_QUEST_UNANSWERED]"
+                      cachedDataType="r8"
+                      cachedName="PATIENTS_QUEST_UNANSWERED"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_INS_QUES_UNANSW]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[PATIENTS_QUEST_UNANSWERED]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[PATIENTS_COVERED_MEDICARE]"
+                      cachedDataType="r8"
+                      cachedName="PATIENTS_COVERED_MEDICARE"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_COVER_MEDICARE]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_MEDICARE]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[PATIENTS_COVERED_MEDIGAP]"
+                      cachedDataType="r8"
+                      cachedName="PATIENTS_COVERED_MEDIGAP"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_COVER_MEDIGAP]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_MEDIGAP]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[PATIENTS_W_UNKNOWNINSURANCE]"
+                      cachedDataType="r8"
+                      cachedName="PATIENTS_W_UNKNOWNINSURANCE"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_W_UNKWN_INS]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[PATIENTS_W_UNKNOWNINSURANCE]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[NUMPOLICIESNOTVERIFIED]"
+                      cachedDataType="r8"
+                      cachedName="NUMPOLICIESNOTVERIFIED"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_POLICIES_NOT_VERIFIED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMPOLICIESNOTVERIFIED]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[TOTALNUMPOLICIESENTERED]"
+                      cachedDataType="r8"
+                      cachedName="TOTALNUMPOLICIESENTERED"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTAL_NUM_POLICIES_ENTERED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[TOTALNUMPOLICIESENTERED]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[NUMPOLICIESVERIFIEDOVERONEYEAR]"
+                      cachedDataType="r8"
+                      cachedName="NUMPOLICIESVERIFIEDOVERONEYEAR"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_POLICIES_VERIFIED_GT_1Y]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMPOLICIESVERIFIEDOVERONEYEAR]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[NUMDISCHARGESNSCBILLED]"
+                      cachedDataType="r8"
+                      cachedName="NUMDISCHARGESNSCBILLED"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_DISCHARGE_NSC_BILLED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMDISCHARGESNSCBILLED]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[NUMDISCHARGESNSCUNBILLEDTOTAL]"
+                      cachedDataType="r8"
+                      cachedName="NUMDISCHARGESNSCUNBILLEDTOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTAL_NUM_DISCHARGE_NSC]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMDISCHARGESNSCUNBILLEDTOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[INSURED_ENCOUNTERS_NSC]"
+                      cachedDataType="r8"
+                      cachedName="INSURED_ENCOUNTERS_NSC"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_INS_ENCOUNTER_NSC_VET]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[INSURED_ENCOUNTERS_NSC]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[INSURED_ENCOUNTERS_SC]"
+                      cachedDataType="r8"
+                      cachedName="INSURED_ENCOUNTERS_SC"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_INS_ENCOUNTER_SC_VET]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[INSURED_ENCOUNTERS_SC]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[WKLD_TOTAL_NSC_ENCOUNTER_SC]"
+                      cachedDataType="r8"
+                      cachedName="WKLD_TOTAL_NSC_ENCOUNTER_SC"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_BILL_NSC_VISIT_FOR_SC_VET]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[WKLD_TOTAL_NSC_ENCOUNTER_SC]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[FPRXNSCTOTAL]"
+                      cachedDataType="r8"
+                      cachedName="FPRXNSCTOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PHARMACY_NSC]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPRXNSCTOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[FPRXNSCAMTTOTAL]"
+                      cachedDataType="r8"
+                      cachedName="FPRXNSCAMTTOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_PHARMACY_NSC]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPRXNSCAMTTOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[FPRXSCTOTAL]"
+                      cachedDataType="r8"
+                      cachedName="FPRXSCTOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PHARMACY_SC]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPRXSCTOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[FPRXSCAMTTOTAL]"
+                      cachedDataType="r8"
+                      cachedName="FPRXSCAMTTOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_PHARMACY_SC]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPRXSCAMTTOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[FPCTOTAL]"
+                      cachedDataType="r8"
+                      cachedName="FPCTOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_CAT_C_HUMANITARIAN]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPCTOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[FPCTAMTTOTAL]"
+                      cachedDataType="r8"
+                      cachedName="FPCTAMTTOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_CAT_C_HUMANITARIAN]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPCTAMTTOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[EMER_AMT_TOTAL]"
+                      cachedDataType="r8"
+                      cachedName="EMER_AMT_TOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_EMER]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[EMER_AMT_TOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[EMER_CNT_TOTAL]"
+                      cachedDataType="r8"
+                      cachedName="EMER_CNT_TOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_EMER]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[EMER_CNT_TOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[EMER_INELIG_AMT_TOTAL]"
+                      cachedDataType="r8"
+                      cachedName="EMER_INELIG_AMT_TOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_INELIG_EMER]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[EMER_INELIG_AMT_TOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[EMER_INELIG_CNT_TOTAL]"
+                      cachedDataType="r8"
+                      cachedName="EMER_INELIG_CNT_TOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_INELIG_EMER]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[EMER_INELIG_CNT_TOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[INELIG_AMT_TOTAL]"
+                      cachedDataType="r8"
+                      cachedName="INELIG_AMT_TOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_INELIG]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[INELIG_AMT_TOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[INELIG_CNT_TOTAL]"
+                      cachedDataType="r8"
+                      cachedName="INELIG_CNT_TOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_INELIG]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[INELIG_CNT_TOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[MBFU_WCENTTOTAL]"
+                      cachedDataType="r8"
+                      cachedName="MBFU_WCENTTOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_WORKMAN_COMP]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_WCENTTOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[MBFU_WCAMTTOTAL]"
+                      cachedDataType="r8"
+                      cachedName="MBFU_WCAMTTOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_WORKMAN_COMP]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_WCAMTTOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[MBFU_NOFLTAMTTOTAL]"
+                      cachedDataType="r8"
+                      cachedName="MBFU_NOFLTAMTTOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_NO_FLT]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_NOFLTAMTTOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[MBFU_NOFLTENTTOTAL]"
+                      cachedDataType="r8"
+                      cachedName="MBFU_NOFLTENTTOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_NO_FLT]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_NOFLTENTTOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[MBFU_TORTENTTOTAL]"
+                      cachedDataType="r8"
+                      cachedName="MBFU_TORTENTTOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_TORT]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_TORTENTTOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[MBFU_TORTAMTTOTAL]"
+                      cachedDataType="r8"
+                      cachedName="MBFU_TORTAMTTOTAL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_TORT]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_TORTAMTTOTAL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[ARBALTOTAL3RDPARTY]"
+                      cachedDataType="r8"
+                      cachedName="ARBALTOTAL3RDPARTY"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[FLWUP_SUMMARY_3RD_PARTY]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[ARBALTOTAL3RDPARTY]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[ARNUMREFERREDTOREGCOUNSEL]"
+                      cachedDataType="r8"
+                      cachedName="ARNUMREFERREDTOREGCOUNSEL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_REC_REF_TO_REG_CNCL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[ARNUMREFERREDTOREGCOUNSEL]" />
+                    <inputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].Columns[ARBALREFERREDTOREGCOUNSEL]"
+                      cachedDataType="r8"
+                      cachedName="ARBALREFERREDTOREGCOUNSEL"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_REC_REF_TO_REG_CNCL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[ARBALREFERREDTOREGCOUNSEL]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[MONTH_DIM_SID]"
+                      dataType="r8"
+                      name="MONTH_DIM_SID" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[STATION_ID]"
+                      dataType="r8"
+                      name="STATION_ID" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_VETS_REGISTRATION_CMPLT]"
+                      dataType="r8"
+                      name="NUM_VETS_REGISTRATION_CMPLT" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTAL_NUM_VETS]"
+                      dataType="r8"
+                      name="TOTAL_NUM_VETS" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_EMPYD_WO_EMPLYR]"
+                      dataType="r8"
+                      name="NUM_PATIENTS_EMPYD_WO_EMPLYR" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTAL_NUM_PATIENTS_TREATED]"
+                      dataType="r8"
+                      name="TOTAL_NUM_PATIENTS_TREATED" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_COVERED_BILLABLE]"
+                      dataType="numeric"
+                      name="NUM_PATIENTS_COVERED_BILLABLE"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTAL_NUM_PATIENT_REG]"
+                      dataType="numeric"
+                      name="TOTAL_NUM_PATIENT_REG"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_INS_QUES_UNANSW]"
+                      dataType="numeric"
+                      name="NUM_PATIENTS_INS_QUES_UNANSW"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_COVER_MEDICARE]"
+                      dataType="numeric"
+                      name="NUM_PATIENTS_COVER_MEDICARE"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_COVER_MEDIGAP]"
+                      dataType="numeric"
+                      name="NUM_PATIENTS_COVER_MEDIGAP"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_W_UNKWN_INS]"
+                      dataType="numeric"
+                      name="NUM_PATIENTS_W_UNKWN_INS"
+                      precision="15"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_POLICIES_NOT_VERIFIED]"
+                      dataType="r8"
+                      name="NUM_POLICIES_NOT_VERIFIED" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTAL_NUM_POLICIES_ENTERED]"
+                      dataType="r8"
+                      name="TOTAL_NUM_POLICIES_ENTERED" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_POLICIES_VERIFIED_GT_1Y]"
+                      dataType="r8"
+                      name="NUM_POLICIES_VERIFIED_GT_1Y" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_DISCHARGE_NSC_BILLED]"
+                      dataType="r8"
+                      name="NUM_DISCHARGE_NSC_BILLED" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTAL_NUM_DISCHARGE_NSC]"
+                      dataType="r8"
+                      name="TOTAL_NUM_DISCHARGE_NSC" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_INS_ENCOUNTER_NSC_VET]"
+                      dataType="r8"
+                      name="NUM_INS_ENCOUNTER_NSC_VET" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_INS_ENCOUNTER_SC_VET]"
+                      dataType="r8"
+                      name="NUM_INS_ENCOUNTER_SC_VET" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_BILL_NSC_VISIT_FOR_SC_VET]"
+                      dataType="r8"
+                      name="NUM_BILL_NSC_VISIT_FOR_SC_VET" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PHARMACY_NSC]"
+                      dataType="r8"
+                      name="NUM_PHARMACY_NSC" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_PHARMACY_NSC]"
+                      dataType="r8"
+                      name="AMT_PHARMACY_NSC" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PHARMACY_SC]"
+                      dataType="r8"
+                      name="NUM_PHARMACY_SC" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_PHARMACY_SC]"
+                      dataType="r8"
+                      name="AMT_PHARMACY_SC" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_CAT_C_HUMANITARIAN]"
+                      dataType="r8"
+                      name="NUM_CAT_C_HUMANITARIAN" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_CAT_C_HUMANITARIAN]"
+                      dataType="r8"
+                      name="AMT_CAT_C_HUMANITARIAN" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_EMER]"
+                      dataType="r8"
+                      name="AMT_EMER" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_EMER]"
+                      dataType="r8"
+                      name="NUM_EMER" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_INELIG_EMER]"
+                      dataType="r8"
+                      name="AMT_INELIG_EMER" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_INELIG_EMER]"
+                      dataType="r8"
+                      name="NUM_INELIG_EMER" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_INELIG]"
+                      dataType="r8"
+                      name="AMT_INELIG" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_INELIG]"
+                      dataType="r8"
+                      name="NUM_INELIG" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_WORKMAN_COMP]"
+                      dataType="r8"
+                      name="NUM_WORKMAN_COMP" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_WORKMAN_COMP]"
+                      dataType="r8"
+                      name="AMT_WORKMAN_COMP" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_NO_FLT]"
+                      dataType="r8"
+                      name="AMT_NO_FLT" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_NO_FLT]"
+                      dataType="r8"
+                      name="NUM_NO_FLT" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_TORT]"
+                      dataType="r8"
+                      name="NUM_TORT" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_TORT]"
+                      dataType="r8"
+                      name="AMT_TORT" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[FLWUP_SUMMARY_3RD_PARTY]"
+                      dataType="r8"
+                      name="FLWUP_SUMMARY_3RD_PARTY" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_REC_REF_TO_REG_CNCL]"
+                      dataType="r8"
+                      name="NUM_REC_REF_TO_REG_CNCL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_REC_REF_TO_REG_CNCL]"
+                      dataType="r8"
+                      name="AMT_REC_REF_TO_REG_CNCL" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output]"
+                  isErrorOut="true"
+                  name="ODBC Destination Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[MONTH_DIM_SID]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[MONTH_DIM_SID]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[MONTH_DIM_SID]"
+                      name="MONTH_DIM_SID" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[STATION_ID]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[STATION_ID]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[STATION_ID]"
+                      name="STATION_ID" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_VETS_REGISTRATION_CMPLT]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_VETS_REGISTRATION_CMPLT]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_VETS_REGISTRATION_CMPLT]"
+                      name="NUM_VETS_REGISTRATION_CMPLT" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[TOTAL_NUM_VETS]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTAL_NUM_VETS]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[TOTAL_NUM_VETS]"
+                      name="TOTAL_NUM_VETS" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_PATIENTS_EMPYD_WO_EMPLYR]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_EMPYD_WO_EMPLYR]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_PATIENTS_EMPYD_WO_EMPLYR]"
+                      name="NUM_PATIENTS_EMPYD_WO_EMPLYR" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[TOTAL_NUM_PATIENTS_TREATED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTAL_NUM_PATIENTS_TREATED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[TOTAL_NUM_PATIENTS_TREATED]"
+                      name="TOTAL_NUM_PATIENTS_TREATED" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_PATIENTS_COVERED_BILLABLE]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_COVERED_BILLABLE]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_PATIENTS_COVERED_BILLABLE]"
+                      name="NUM_PATIENTS_COVERED_BILLABLE"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[TOTAL_NUM_PATIENT_REG]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTAL_NUM_PATIENT_REG]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[TOTAL_NUM_PATIENT_REG]"
+                      name="TOTAL_NUM_PATIENT_REG"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_PATIENTS_INS_QUES_UNANSW]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_INS_QUES_UNANSW]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_PATIENTS_INS_QUES_UNANSW]"
+                      name="NUM_PATIENTS_INS_QUES_UNANSW"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_PATIENTS_COVER_MEDICARE]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_COVER_MEDICARE]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_PATIENTS_COVER_MEDICARE]"
+                      name="NUM_PATIENTS_COVER_MEDICARE"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_PATIENTS_COVER_MEDIGAP]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_COVER_MEDIGAP]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_PATIENTS_COVER_MEDIGAP]"
+                      name="NUM_PATIENTS_COVER_MEDIGAP"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_PATIENTS_W_UNKWN_INS]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PATIENTS_W_UNKWN_INS]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_PATIENTS_W_UNKWN_INS]"
+                      name="NUM_PATIENTS_W_UNKWN_INS"
+                      precision="15"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_POLICIES_NOT_VERIFIED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_POLICIES_NOT_VERIFIED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_POLICIES_NOT_VERIFIED]"
+                      name="NUM_POLICIES_NOT_VERIFIED" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[TOTAL_NUM_POLICIES_ENTERED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTAL_NUM_POLICIES_ENTERED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[TOTAL_NUM_POLICIES_ENTERED]"
+                      name="TOTAL_NUM_POLICIES_ENTERED" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_POLICIES_VERIFIED_GT_1Y]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_POLICIES_VERIFIED_GT_1Y]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_POLICIES_VERIFIED_GT_1Y]"
+                      name="NUM_POLICIES_VERIFIED_GT_1Y" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_DISCHARGE_NSC_BILLED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_DISCHARGE_NSC_BILLED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_DISCHARGE_NSC_BILLED]"
+                      name="NUM_DISCHARGE_NSC_BILLED" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[TOTAL_NUM_DISCHARGE_NSC]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTAL_NUM_DISCHARGE_NSC]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[TOTAL_NUM_DISCHARGE_NSC]"
+                      name="TOTAL_NUM_DISCHARGE_NSC" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_INS_ENCOUNTER_NSC_VET]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_INS_ENCOUNTER_NSC_VET]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_INS_ENCOUNTER_NSC_VET]"
+                      name="NUM_INS_ENCOUNTER_NSC_VET" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_INS_ENCOUNTER_SC_VET]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_INS_ENCOUNTER_SC_VET]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_INS_ENCOUNTER_SC_VET]"
+                      name="NUM_INS_ENCOUNTER_SC_VET" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_BILL_NSC_VISIT_FOR_SC_VET]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_BILL_NSC_VISIT_FOR_SC_VET]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_BILL_NSC_VISIT_FOR_SC_VET]"
+                      name="NUM_BILL_NSC_VISIT_FOR_SC_VET" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_PHARMACY_NSC]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PHARMACY_NSC]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_PHARMACY_NSC]"
+                      name="NUM_PHARMACY_NSC" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_PHARMACY_NSC]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_PHARMACY_NSC]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_PHARMACY_NSC]"
+                      name="AMT_PHARMACY_NSC" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_PHARMACY_SC]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_PHARMACY_SC]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_PHARMACY_SC]"
+                      name="NUM_PHARMACY_SC" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_PHARMACY_SC]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_PHARMACY_SC]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_PHARMACY_SC]"
+                      name="AMT_PHARMACY_SC" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_CAT_C_HUMANITARIAN]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_CAT_C_HUMANITARIAN]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_CAT_C_HUMANITARIAN]"
+                      name="NUM_CAT_C_HUMANITARIAN" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_CAT_C_HUMANITARIAN]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_CAT_C_HUMANITARIAN]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_CAT_C_HUMANITARIAN]"
+                      name="AMT_CAT_C_HUMANITARIAN" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_EMER]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_EMER]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_EMER]"
+                      name="AMT_EMER" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_EMER]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_EMER]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_EMER]"
+                      name="NUM_EMER" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_INELIG_EMER]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_INELIG_EMER]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_INELIG_EMER]"
+                      name="AMT_INELIG_EMER" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_INELIG_EMER]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_INELIG_EMER]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_INELIG_EMER]"
+                      name="NUM_INELIG_EMER" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_INELIG]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_INELIG]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_INELIG]"
+                      name="AMT_INELIG" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_INELIG]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_INELIG]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_INELIG]"
+                      name="NUM_INELIG" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_WORKMAN_COMP]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_WORKMAN_COMP]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_WORKMAN_COMP]"
+                      name="NUM_WORKMAN_COMP" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_WORKMAN_COMP]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_WORKMAN_COMP]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_WORKMAN_COMP]"
+                      name="AMT_WORKMAN_COMP" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_NO_FLT]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_NO_FLT]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_NO_FLT]"
+                      name="AMT_NO_FLT" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_NO_FLT]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_NO_FLT]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_NO_FLT]"
+                      name="NUM_NO_FLT" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_TORT]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_TORT]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_TORT]"
+                      name="NUM_TORT" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_TORT]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_TORT]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_TORT]"
+                      name="AMT_TORT" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[FLWUP_SUMMARY_3RD_PARTY]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[FLWUP_SUMMARY_3RD_PARTY]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[FLWUP_SUMMARY_3RD_PARTY]"
+                      name="FLWUP_SUMMARY_3RD_PARTY" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_REC_REF_TO_REG_CNCL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[NUM_REC_REF_TO_REG_CNCL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[NUM_REC_REF_TO_REG_CNCL]"
+                      name="NUM_REC_REF_TO_REG_CNCL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_REC_REF_TO_REG_CNCL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[AMT_REC_REF_TO_REG_CNCL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[AMT_REC_REF_TO_REG_CNCL]"
+                      name="AMT_REC_REF_TO_REG_CNCL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source"
+              componentClassID="Attunity.SSISODBCSrc"
+              description="ODBC Source"
+              name="ODBC Source"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The name of the table to be fetched."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand">SELECT a.acct_month_id,
+             A.FKFACILITYNUM,
+             a.NumCompleteRegistrationsVet,
+             a.NumVets,
+             --b.NUMPATIENTSUNEMPORWITHEMP,
+             b.NUMPATIENTSEMPLOYEDWITHNOEMP,
+             b.TotalNumPatientsTreated,
+             c.patients_covered_billable,
+             c.total_patients_registered,
+             c.patients_quest_unanswered,
+             c.patients_covered_medicare,
+             c.patients_covered_medigap,
+             c.patients_w_unknowninsurance,
+             d.numPoliciesNotVerified,
+             d.totalnumpoliciesentered,
+             d.NumPoliciesVerifiedOverOneYear,
+             e.NumDischargesNSCBilled,
+             e.NumDischargesNSCUnbilledTotal,
+             f.insured_encounters_nsc,
+             f.insured_encounters_sc,
+             f.wkld_total_nsc_encounter_sc,
+             g.FPRXNSCTOTAL,
+             g.FPRXNSCAMTTOTAL,
+             g.FPRXSCTOTAL,
+             g.FPRXSCAMTTOTAL,
+             h.FPCTOTAL,
+             h.FPCTAMTTOTAL,
+             i.emer_amt_total,
+             i.emer_cnt_total,
+             i.emer_inelig_amt_total,
+             i.emer_inelig_cnt_total,
+             i.inelig_amt_total, 
+             i.inelig_cnt_total,
+--             i.inelig_cnt_le30,
+--             j.MBFU_NOFLTENTLESSTHAN30DAYSOLD,
+--             j.MBFU_NOFLTAMTLESSTHAN30DAYSOLD,
+             j.MBFU_WCENTTOTAL,
+             j.MBFU_WCAMTTOTAL,
+             j.mbfu_nofltamttotal,
+             j.mbfu_nofltenttotal,
+             j.mbfu_tortenttotal,
+             j.mbfu_tortamttotal,
+             l.arbaltotal3rdparty,
+             l.ARNUMREFERREDTOREGCOUNSEL,
+             l.ARBALREFERREDTOREGCOUNSEL
+        FROM cpac_stg.stg_pct_comp_reg_Sum a,
+             cpac_stg.stg_no_emp_list_sum b,
+             cpac_stg.stg_new_patients c,
+             cpac_stg.stg_ins_policy_verify_sum d,
+             cpac_stg.stg_ins_scvet_unbill_inp_sum e,
+             cpac_stg.STG_OUTPATIENT_ENCOUNTER f,
+             cpac_stg.stg_1st_party_followup_rx g,
+             cpac_stg.stg_1st_party_followup_cm_test h,
+             cpac_stg.STG_1ST_PARTY i,
+             cpac_stg.stg_mis_bill_followup j,
+             cpac_stg.stg_3rd_party l,
+             bio_bis.bio_bis_etl_log x
+       WHERE     A.FKFACILITYNUM = B.FKFACILITYNUM(+)
+             AND A.FKFACILITYNUM = C.FACILITY_ID
+             AND A.FKFACILITYNUM = D.FKFACILITYNUM
+             AND A.FKFACILITYNUM = E.FKFACILITYNUM
+             AND A.FKFACILITYNUM = F.FACILITY_ID
+             AND A.FKFACILITYNUM = G.FKFACILITYNUM
+             AND A.FKFACILITYNUM = H.FKFACILITYNUM
+             AND A.FKFACILITYNUM = i.FACILITY_ID
+             AND A.FKFACILITYNUM = J.FKFACILITYNUM
+             AND A.FKFACILITYNUM = L.FKFACILITYNUM
+             AND a.ACCT_MONTH_ID = b.ACCT_MONTH_ID(+)
+             AND a.ACCT_MONTH_ID = c.ACCT_MONTH_ID
+             AND a.ACCT_MONTH_ID = d.ACCT_MONTH_ID
+             AND a.ACCT_MONTH_ID = e.ACCT_MONTH_ID
+             AND a.ACCT_MONTH_ID = f.ACCT_MONTH_ID
+             AND a.ACCT_MONTH_ID = g.ACCT_MONTH_ID
+             AND a.ACCT_MONTH_ID = h.ACCT_MONTH_ID
+             AND a.ACCT_MONTH_ID = i.ACCT_MONTH_ID
+             AND a.ACCT_MONTH_ID = j.ACCT_MONTH_ID
+             AND a.ACCT_MONTH_ID = l.ACCT_MONTH_ID
+             and a.acct_month_id = x.MONTH_DIM_SID;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows fetched per batch."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines the chunk size allocation for LOB columns"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines how the component exposes CHAR columns. If False, CHAR columns are exposed as (multi-)byte strings (DT_STR), if True, CHAR columns are exposed as wide strings (DT_WSTR)"
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The code page to use when code page information is unavailable from the data source."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="The mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The method used for fetching data."
+                  expressionType="Notify"
+                  name="FetchMethod"
+                  typeConverter="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The ODBC C data type for binding numeric data."
+                  expressionType="Notify"
+                  name="BindNumericAs"
+                  typeConverter="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs"
+                  typeConverter="BindCharColumnsAs">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Connections[ODBCConnection]"
+                  connectionManagerID="Package.ConnectionManagers[oracle connection 32bit.vacoowensr3]"
+                  connectionManagerRefId="Package.ConnectionManagers[oracle connection 32bit.vacoowensr3]"
+                  description="The ODBC runtime connection"
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output]"
+                  errorRowDisposition="FailComponent"
+                  name="ODBC Source Output"
+                  truncationRowDisposition="FailComponent">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[ACCT_MONTH_ID]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[ACCT_MONTH_ID]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[ACCT_MONTH_ID]"
+                      name="ACCT_MONTH_ID" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FKFACILITYNUM]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FKFACILITYNUM]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FKFACILITYNUM]"
+                      name="FKFACILITYNUM" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMCOMPLETEREGISTRATIONSVET]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMCOMPLETEREGISTRATIONSVET]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMCOMPLETEREGISTRATIONSVET]"
+                      name="NUMCOMPLETEREGISTRATIONSVET" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMVETS]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMVETS]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMVETS]"
+                      name="NUMVETS" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMPATIENTSEMPLOYEDWITHNOEMP]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMPATIENTSEMPLOYEDWITHNOEMP]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMPATIENTSEMPLOYEDWITHNOEMP]"
+                      name="NUMPATIENTSEMPLOYEDWITHNOEMP" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[TOTALNUMPATIENTSTREATED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[TOTALNUMPATIENTSTREATED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[TOTALNUMPATIENTSTREATED]"
+                      name="TOTALNUMPATIENTSTREATED" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_BILLABLE]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_BILLABLE]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_BILLABLE]"
+                      name="PATIENTS_COVERED_BILLABLE" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[TOTAL_PATIENTS_REGISTERED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[TOTAL_PATIENTS_REGISTERED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[TOTAL_PATIENTS_REGISTERED]"
+                      name="TOTAL_PATIENTS_REGISTERED" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[PATIENTS_QUEST_UNANSWERED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_QUEST_UNANSWERED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[PATIENTS_QUEST_UNANSWERED]"
+                      name="PATIENTS_QUEST_UNANSWERED" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_MEDICARE]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_MEDICARE]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_MEDICARE]"
+                      name="PATIENTS_COVERED_MEDICARE" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_MEDIGAP]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_MEDIGAP]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[PATIENTS_COVERED_MEDIGAP]"
+                      name="PATIENTS_COVERED_MEDIGAP" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[PATIENTS_W_UNKNOWNINSURANCE]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_W_UNKNOWNINSURANCE]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[PATIENTS_W_UNKNOWNINSURANCE]"
+                      name="PATIENTS_W_UNKNOWNINSURANCE" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMPOLICIESNOTVERIFIED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMPOLICIESNOTVERIFIED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMPOLICIESNOTVERIFIED]"
+                      name="NUMPOLICIESNOTVERIFIED" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[TOTALNUMPOLICIESENTERED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[TOTALNUMPOLICIESENTERED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[TOTALNUMPOLICIESENTERED]"
+                      name="TOTALNUMPOLICIESENTERED" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMPOLICIESVERIFIEDOVERONEYEAR]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMPOLICIESVERIFIEDOVERONEYEAR]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMPOLICIESVERIFIEDOVERONEYEAR]"
+                      name="NUMPOLICIESVERIFIEDOVERONEYEAR" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMDISCHARGESNSCBILLED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMDISCHARGESNSCBILLED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMDISCHARGESNSCBILLED]"
+                      name="NUMDISCHARGESNSCBILLED" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMDISCHARGESNSCUNBILLEDTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMDISCHARGESNSCUNBILLEDTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[NUMDISCHARGESNSCUNBILLEDTOTAL]"
+                      name="NUMDISCHARGESNSCUNBILLEDTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[INSURED_ENCOUNTERS_NSC]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[INSURED_ENCOUNTERS_NSC]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[INSURED_ENCOUNTERS_NSC]"
+                      name="INSURED_ENCOUNTERS_NSC" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[INSURED_ENCOUNTERS_SC]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[INSURED_ENCOUNTERS_SC]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[INSURED_ENCOUNTERS_SC]"
+                      name="INSURED_ENCOUNTERS_SC" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[WKLD_TOTAL_NSC_ENCOUNTER_SC]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[WKLD_TOTAL_NSC_ENCOUNTER_SC]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[WKLD_TOTAL_NSC_ENCOUNTER_SC]"
+                      name="WKLD_TOTAL_NSC_ENCOUNTER_SC" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPRXNSCTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPRXNSCTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPRXNSCTOTAL]"
+                      name="FPRXNSCTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPRXNSCAMTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPRXNSCAMTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPRXNSCAMTTOTAL]"
+                      name="FPRXNSCAMTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPRXSCTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPRXSCTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPRXSCTOTAL]"
+                      name="FPRXSCTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPRXSCAMTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPRXSCAMTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPRXSCAMTTOTAL]"
+                      name="FPRXSCAMTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPCTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPCTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPCTOTAL]"
+                      name="FPCTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPCTAMTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPCTAMTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[FPCTAMTTOTAL]"
+                      name="FPCTAMTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[EMER_AMT_TOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[EMER_AMT_TOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[EMER_AMT_TOTAL]"
+                      name="EMER_AMT_TOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[EMER_CNT_TOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[EMER_CNT_TOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[EMER_CNT_TOTAL]"
+                      name="EMER_CNT_TOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[EMER_INELIG_AMT_TOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[EMER_INELIG_AMT_TOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[EMER_INELIG_AMT_TOTAL]"
+                      name="EMER_INELIG_AMT_TOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[EMER_INELIG_CNT_TOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[EMER_INELIG_CNT_TOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[EMER_INELIG_CNT_TOTAL]"
+                      name="EMER_INELIG_CNT_TOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[INELIG_AMT_TOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[INELIG_AMT_TOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[INELIG_AMT_TOTAL]"
+                      name="INELIG_AMT_TOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[INELIG_CNT_TOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[INELIG_CNT_TOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[INELIG_CNT_TOTAL]"
+                      name="INELIG_CNT_TOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_WCENTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_WCENTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_WCENTTOTAL]"
+                      name="MBFU_WCENTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_WCAMTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_WCAMTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_WCAMTTOTAL]"
+                      name="MBFU_WCAMTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_NOFLTAMTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_NOFLTAMTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_NOFLTAMTTOTAL]"
+                      name="MBFU_NOFLTAMTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_NOFLTENTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_NOFLTENTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_NOFLTENTTOTAL]"
+                      name="MBFU_NOFLTENTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_TORTENTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_TORTENTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_TORTENTTOTAL]"
+                      name="MBFU_TORTENTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_TORTAMTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_TORTAMTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[MBFU_TORTAMTTOTAL]"
+                      name="MBFU_TORTAMTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[ARBALTOTAL3RDPARTY]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[ARBALTOTAL3RDPARTY]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[ARBALTOTAL3RDPARTY]"
+                      name="ARBALTOTAL3RDPARTY" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[ARNUMREFERREDTOREGCOUNSEL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[ARNUMREFERREDTOREGCOUNSEL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[ARNUMREFERREDTOREGCOUNSEL]"
+                      name="ARNUMREFERREDTOREGCOUNSEL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[ARBALREFERREDTOREGCOUNSEL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[ARBALREFERREDTOREGCOUNSEL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].Columns[ARBALREFERREDTOREGCOUNSEL]"
+                      name="ARBALREFERREDTOREGCOUNSEL" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[ACCT_MONTH_ID]"
+                      dataType="r8"
+                      name="ACCT_MONTH_ID" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FKFACILITYNUM]"
+                      dataType="r8"
+                      name="FKFACILITYNUM" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMCOMPLETEREGISTRATIONSVET]"
+                      dataType="r8"
+                      name="NUMCOMPLETEREGISTRATIONSVET" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMVETS]"
+                      dataType="r8"
+                      name="NUMVETS" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMPATIENTSEMPLOYEDWITHNOEMP]"
+                      dataType="r8"
+                      name="NUMPATIENTSEMPLOYEDWITHNOEMP" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[TOTALNUMPATIENTSTREATED]"
+                      dataType="r8"
+                      name="TOTALNUMPATIENTSTREATED" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_BILLABLE]"
+                      dataType="r8"
+                      name="PATIENTS_COVERED_BILLABLE" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[TOTAL_PATIENTS_REGISTERED]"
+                      dataType="r8"
+                      name="TOTAL_PATIENTS_REGISTERED" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_QUEST_UNANSWERED]"
+                      dataType="r8"
+                      name="PATIENTS_QUEST_UNANSWERED" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_MEDICARE]"
+                      dataType="r8"
+                      name="PATIENTS_COVERED_MEDICARE" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_MEDIGAP]"
+                      dataType="r8"
+                      name="PATIENTS_COVERED_MEDIGAP" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_W_UNKNOWNINSURANCE]"
+                      dataType="r8"
+                      name="PATIENTS_W_UNKNOWNINSURANCE" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMPOLICIESNOTVERIFIED]"
+                      dataType="r8"
+                      name="NUMPOLICIESNOTVERIFIED" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[TOTALNUMPOLICIESENTERED]"
+                      dataType="r8"
+                      name="TOTALNUMPOLICIESENTERED" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMPOLICIESVERIFIEDOVERONEYEAR]"
+                      dataType="r8"
+                      name="NUMPOLICIESVERIFIEDOVERONEYEAR" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMDISCHARGESNSCBILLED]"
+                      dataType="r8"
+                      name="NUMDISCHARGESNSCBILLED" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMDISCHARGESNSCUNBILLEDTOTAL]"
+                      dataType="r8"
+                      name="NUMDISCHARGESNSCUNBILLEDTOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[INSURED_ENCOUNTERS_NSC]"
+                      dataType="r8"
+                      name="INSURED_ENCOUNTERS_NSC" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[INSURED_ENCOUNTERS_SC]"
+                      dataType="r8"
+                      name="INSURED_ENCOUNTERS_SC" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[WKLD_TOTAL_NSC_ENCOUNTER_SC]"
+                      dataType="r8"
+                      name="WKLD_TOTAL_NSC_ENCOUNTER_SC" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPRXNSCTOTAL]"
+                      dataType="r8"
+                      name="FPRXNSCTOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPRXNSCAMTTOTAL]"
+                      dataType="r8"
+                      name="FPRXNSCAMTTOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPRXSCTOTAL]"
+                      dataType="r8"
+                      name="FPRXSCTOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPRXSCAMTTOTAL]"
+                      dataType="r8"
+                      name="FPRXSCAMTTOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPCTOTAL]"
+                      dataType="r8"
+                      name="FPCTOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPCTAMTTOTAL]"
+                      dataType="r8"
+                      name="FPCTAMTTOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[EMER_AMT_TOTAL]"
+                      dataType="r8"
+                      name="EMER_AMT_TOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[EMER_CNT_TOTAL]"
+                      dataType="r8"
+                      name="EMER_CNT_TOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[EMER_INELIG_AMT_TOTAL]"
+                      dataType="r8"
+                      name="EMER_INELIG_AMT_TOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[EMER_INELIG_CNT_TOTAL]"
+                      dataType="r8"
+                      name="EMER_INELIG_CNT_TOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[INELIG_AMT_TOTAL]"
+                      dataType="r8"
+                      name="INELIG_AMT_TOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[INELIG_CNT_TOTAL]"
+                      dataType="r8"
+                      name="INELIG_CNT_TOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_WCENTTOTAL]"
+                      dataType="r8"
+                      name="MBFU_WCENTTOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_WCAMTTOTAL]"
+                      dataType="r8"
+                      name="MBFU_WCAMTTOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_NOFLTAMTTOTAL]"
+                      dataType="r8"
+                      name="MBFU_NOFLTAMTTOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_NOFLTENTTOTAL]"
+                      dataType="r8"
+                      name="MBFU_NOFLTENTTOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_TORTENTTOTAL]"
+                      dataType="r8"
+                      name="MBFU_TORTENTTOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_TORTAMTTOTAL]"
+                      dataType="r8"
+                      name="MBFU_TORTAMTTOTAL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[ARBALTOTAL3RDPARTY]"
+                      dataType="r8"
+                      name="ARBALTOTAL3RDPARTY" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[ARNUMREFERREDTOREGCOUNSEL]"
+                      dataType="r8"
+                      name="ARNUMREFERREDTOREGCOUNSEL" />
+                    <externalMetadataColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[ARBALREFERREDTOREGCOUNSEL]"
+                      dataType="r8"
+                      name="ARBALREFERREDTOREGCOUNSEL" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output]"
+                  isErrorOut="true"
+                  name="ODBC Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[ACCT_MONTH_ID]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[ACCT_MONTH_ID]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[ACCT_MONTH_ID]"
+                      name="ACCT_MONTH_ID" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[FKFACILITYNUM]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FKFACILITYNUM]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[FKFACILITYNUM]"
+                      name="FKFACILITYNUM" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[NUMCOMPLETEREGISTRATIONSVET]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMCOMPLETEREGISTRATIONSVET]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[NUMCOMPLETEREGISTRATIONSVET]"
+                      name="NUMCOMPLETEREGISTRATIONSVET" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[NUMVETS]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMVETS]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[NUMVETS]"
+                      name="NUMVETS" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[NUMPATIENTSEMPLOYEDWITHNOEMP]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMPATIENTSEMPLOYEDWITHNOEMP]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[NUMPATIENTSEMPLOYEDWITHNOEMP]"
+                      name="NUMPATIENTSEMPLOYEDWITHNOEMP" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[TOTALNUMPATIENTSTREATED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[TOTALNUMPATIENTSTREATED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[TOTALNUMPATIENTSTREATED]"
+                      name="TOTALNUMPATIENTSTREATED" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED_BILLABLE]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_BILLABLE]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED_BILLABLE]"
+                      name="PATIENTS_COVERED_BILLABLE" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[TOTAL_PATIENTS_REGISTERED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[TOTAL_PATIENTS_REGISTERED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[TOTAL_PATIENTS_REGISTERED]"
+                      name="TOTAL_PATIENTS_REGISTERED" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[PATIENTS_QUEST_UNANSWERED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_QUEST_UNANSWERED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[PATIENTS_QUEST_UNANSWERED]"
+                      name="PATIENTS_QUEST_UNANSWERED" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED_MEDICARE]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_MEDICARE]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED_MEDICARE]"
+                      name="PATIENTS_COVERED_MEDICARE" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED_MEDIGAP]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_COVERED_MEDIGAP]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[PATIENTS_COVERED_MEDIGAP]"
+                      name="PATIENTS_COVERED_MEDIGAP" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[PATIENTS_W_UNKNOWNINSURANCE]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PATIENTS_W_UNKNOWNINSURANCE]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[PATIENTS_W_UNKNOWNINSURANCE]"
+                      name="PATIENTS_W_UNKNOWNINSURANCE" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[NUMPOLICIESNOTVERIFIED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMPOLICIESNOTVERIFIED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[NUMPOLICIESNOTVERIFIED]"
+                      name="NUMPOLICIESNOTVERIFIED" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[TOTALNUMPOLICIESENTERED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[TOTALNUMPOLICIESENTERED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[TOTALNUMPOLICIESENTERED]"
+                      name="TOTALNUMPOLICIESENTERED" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[NUMPOLICIESVERIFIEDOVERONEYEAR]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMPOLICIESVERIFIEDOVERONEYEAR]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[NUMPOLICIESVERIFIEDOVERONEYEAR]"
+                      name="NUMPOLICIESVERIFIEDOVERONEYEAR" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[NUMDISCHARGESNSCBILLED]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMDISCHARGESNSCBILLED]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[NUMDISCHARGESNSCBILLED]"
+                      name="NUMDISCHARGESNSCBILLED" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[NUMDISCHARGESNSCUNBILLEDTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[NUMDISCHARGESNSCUNBILLEDTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[NUMDISCHARGESNSCUNBILLEDTOTAL]"
+                      name="NUMDISCHARGESNSCUNBILLEDTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[INSURED_ENCOUNTERS_NSC]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[INSURED_ENCOUNTERS_NSC]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[INSURED_ENCOUNTERS_NSC]"
+                      name="INSURED_ENCOUNTERS_NSC" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[INSURED_ENCOUNTERS_SC]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[INSURED_ENCOUNTERS_SC]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[INSURED_ENCOUNTERS_SC]"
+                      name="INSURED_ENCOUNTERS_SC" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[WKLD_TOTAL_NSC_ENCOUNTER_SC]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[WKLD_TOTAL_NSC_ENCOUNTER_SC]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[WKLD_TOTAL_NSC_ENCOUNTER_SC]"
+                      name="WKLD_TOTAL_NSC_ENCOUNTER_SC" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[FPRXNSCTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPRXNSCTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[FPRXNSCTOTAL]"
+                      name="FPRXNSCTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[FPRXNSCAMTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPRXNSCAMTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[FPRXNSCAMTTOTAL]"
+                      name="FPRXNSCAMTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[FPRXSCTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPRXSCTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[FPRXSCTOTAL]"
+                      name="FPRXSCTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[FPRXSCAMTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPRXSCAMTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[FPRXSCAMTTOTAL]"
+                      name="FPRXSCAMTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[FPCTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPCTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[FPCTOTAL]"
+                      name="FPCTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[FPCTAMTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FPCTAMTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[FPCTAMTTOTAL]"
+                      name="FPCTAMTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[EMER_AMT_TOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[EMER_AMT_TOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[EMER_AMT_TOTAL]"
+                      name="EMER_AMT_TOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[EMER_CNT_TOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[EMER_CNT_TOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[EMER_CNT_TOTAL]"
+                      name="EMER_CNT_TOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[EMER_INELIG_AMT_TOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[EMER_INELIG_AMT_TOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[EMER_INELIG_AMT_TOTAL]"
+                      name="EMER_INELIG_AMT_TOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[EMER_INELIG_CNT_TOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[EMER_INELIG_CNT_TOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[EMER_INELIG_CNT_TOTAL]"
+                      name="EMER_INELIG_CNT_TOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[INELIG_AMT_TOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[INELIG_AMT_TOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[INELIG_AMT_TOTAL]"
+                      name="INELIG_AMT_TOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[INELIG_CNT_TOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[INELIG_CNT_TOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[INELIG_CNT_TOTAL]"
+                      name="INELIG_CNT_TOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[MBFU_WCENTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_WCENTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[MBFU_WCENTTOTAL]"
+                      name="MBFU_WCENTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[MBFU_WCAMTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_WCAMTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[MBFU_WCAMTTOTAL]"
+                      name="MBFU_WCAMTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[MBFU_NOFLTAMTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_NOFLTAMTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[MBFU_NOFLTAMTTOTAL]"
+                      name="MBFU_NOFLTAMTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[MBFU_NOFLTENTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_NOFLTENTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[MBFU_NOFLTENTTOTAL]"
+                      name="MBFU_NOFLTENTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[MBFU_TORTENTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_TORTENTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[MBFU_TORTENTTOTAL]"
+                      name="MBFU_TORTENTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[MBFU_TORTAMTTOTAL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[MBFU_TORTAMTTOTAL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[MBFU_TORTAMTTOTAL]"
+                      name="MBFU_TORTAMTTOTAL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[ARBALTOTAL3RDPARTY]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[ARBALTOTAL3RDPARTY]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[ARBALTOTAL3RDPARTY]"
+                      name="ARBALTOTAL3RDPARTY" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[ARNUMREFERREDTOREGCOUNSEL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[ARNUMREFERREDTOREGCOUNSEL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[ARNUMREFERREDTOREGCOUNSEL]"
+                      name="ARNUMREFERREDTOREGCOUNSEL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[ARBALREFERREDTOREGCOUNSEL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[ARBALREFERREDTOREGCOUNSEL]"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[ARBALREFERREDTOREGCOUNSEL]"
+                      name="ARBALREFERREDTOREGCOUNSEL" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\load stg_revenue_cycle from cpac_stg.Paths[ODBC Source Output]"
+              endId="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination.Inputs[ODBC Destination Input]"
+              name="ODBC Source Output"
+              startId="Package\load stg_revenue_cycle from cpac_stg\ODBC Source.Outputs[ODBC Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{93B466A8-DB4C-451C-9C2C-DB0E3C800BEA}"
+      DTS:From="Package\load stg_revenue_cycle from cpac_stg"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Execute SQL Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Execute SQL Task"
+          TopLeft="132,232" />
+        <NodeLayout
+          Size="261,42"
+          Id="Package\load stg_revenue_cycle from cpac_stg"
+          TopLeft="86,121" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="215.5,163">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,69"
+              Start="0,0"
+              End="0,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\load stg_revenue_cycle from cpac_stg">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165,42"
+          Id="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination"
+          TopLeft="405,207" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\load stg_revenue_cycle from cpac_stg\ODBC Source"
+          TopLeft="88,207" />
+        <EdgeLayout
+          Id="Package\load stg_revenue_cycle from cpac_stg.Paths[ODBC Source Output]"
+          TopLeft="232,228">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="173,0"
+              Start="0,0"
+              End="165.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="165.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\load stg_revenue_cycle from cpac_stg\ODBC Destination">
+    <Properties>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
